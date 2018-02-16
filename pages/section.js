@@ -3,19 +3,14 @@ import MastHeadCap from '../components/header/MastHeadCap'
 
 import Link from 'next/link'
 
-export default () => (
+export default (props) => (
     <body>
         <Header />
         <div className="content">
-            <p></p>
+            <h1>{props.url.query.title}</h1>
+            <p>ITS CHANGED</p>
         </div>
         <style jsx global>{`
-            p {
-                font-size: 36pt;
-                text-align: center;
-                margin: 0 auto;
-                padding: 0;
-            }
         `}
         </style>
     </body>
