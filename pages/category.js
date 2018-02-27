@@ -10,8 +10,5 @@ export default (props) => (
             <h1>{props.url.query.title}</h1>
             <p>ITS CHANGED</p>
         </div>
-        <style jsx global>{`
-        `}
-        </style>
     </body>
 )

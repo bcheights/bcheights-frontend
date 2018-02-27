@@ -10,10 +10,11 @@ app.prepare()
 .then(() => {
     const server = express()
 
-    server.get('/section/:section', (req, res) => {
-        const mergedQuery = Object.assign({}, req.query, req.params);
-        return app.render(req, res, '/section', mergedQuery);
-    });
+    server.get('/category/:id', (req, res) => {
+        const actualPage = '/category'
+        const queryParams = { id: req.params.id } 
+        app.render(req, res, actualPage, queryParams)
+    })
 
     server.get('*', (req, res) => {
         return handle(req, res)

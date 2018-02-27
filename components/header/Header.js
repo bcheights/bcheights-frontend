@@ -2,25 +2,25 @@ import MastHeadCap from '../header/MastHeadCap'
 
 import Link from 'next/link'
 
-function getSections() {
+function getCategories() {
     return [
         { id: 'news', title: 'News' },
         { id: 'sports', title: 'Sports' },
         { id: 'arts', title: 'Arts' },
         { id: 'opinions', title: 'Opinions' },
         { id: 'metro', title: 'Metro' },
-        { id: 'features', title: 'Features' },
+        { id: 'blog', title: 'Blog' }
     ]
 }
 
-const SectionLink = ({ section }) => (
+const CategoryLink = ({ category }) => (
     <li>
-        <Link as={`/section/${section.id}`} href={`/section?title=${section.id}`}>
-            <a>{section.title}</a>
+        <Link as={`/category/${category.id}`} href={`/category?title=${category.title}`}>
+            <a>{category.title}</a>
         </Link>
         <style jsx>{`
             li {
-                display: inline-block;
+                align-items: center;
                 width: auto;
                 margin: 0;
                 padding: 0 2% 0;
@@ -30,10 +30,9 @@ const SectionLink = ({ section }) => (
                 text-align: center;
                 text-decoration: none;
                 margin: 12px 0 0 0;
-                display: block;
                 color: black;
                 text-family: "Times New Roman";
-                font-size: 13pt;
+                font-size: 11pt;
             }
 
             a:hover {
@@ -47,23 +46,38 @@ const SectionLink = ({ section }) => (
 
 const Header = () => (
     <div className="header">
-        <h1 id="masthead">
-            <Link href="/"><a>The Heights</a></Link>
-        </h1>
+        <MastHeadCap />
+        <div id="masthead">
+            <h1><Link href="/"><a>The Heights</a></Link></h1>
+            <Link href="/"><img src="../static/heights-logo.png"></img></Link>
+        </div>
         <ul id="masthead-nav">
-            <li><Link href='/'><a>Home</a></Link></li>
-            {getSections().map((section) => (
-                <SectionLink key={section.id} section={section}/>
+            {getCategories().map((category) => (
+                <CategoryLink key={category.id} category={category}/>
             ))}
             <li><Link href='/magazine'><a>Magazine</a></Link></li>
-            <li><Link href='/more'><a>More</a></Link></li>
+            <li><Link href='/centennial'><a>Centennial</a></Link></li>
         </ul>
         <style jsx>{`
             #masthead {
-                border-bottom-style: solid;
+                margin: auto;
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            #masthead h1 {
+                display: inline-block;
                 text-align: center;
                 margin: 0 auto;
-                padding: 10px 0;
+                padding: 0;
+                vertical-align: bottom;
+                font-size: 30pt;
+            }
+
+            #masthead img {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
             }
 
             #masthead a {
@@ -71,7 +85,7 @@ const Header = () => (
                 text-decoration: none;
                 text-family: "Times New Roman";
                 color: black;
-                margin: 0;
+                margin: auto;
             }
 
             img {
@@ -83,28 +97,33 @@ const Header = () => (
             }
 
             #masthead-nav {
-                width: 100%;
+                width: 60%;
                 margin: 0 auto;
                 padding: 0;
                 list-style-type: none;
                 text-align: center;
+                border-bottom-style: solid;
+                border-top-style: solid;
+                border-width: 1px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             #masthead-nav li {
-                display: inline-block;
                 width: auto;
                 margin: 0;
                 padding: 0 2% 0;
+                align-items: center;
             }
             
             #masthead-nav a {
                 text-align: center;
                 text-decoration: none;
                 margin: 12px 0 0 0;
-                display: block;
                 color: black;
                 text-family: "Times New Roman";
-                font-size: 13pt;
+                font-size: 11pt;
             }
 
             #masthead-nav a:hover {
