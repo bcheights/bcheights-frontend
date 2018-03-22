@@ -1,5 +1,5 @@
 const express = require('express')
-const { parse } = require('url');
+const { parse } = require('url')
 const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -12,7 +12,16 @@ app.prepare()
 
     server.get('/category/:id', (req, res) => {
         const actualPage = '/category'
-        const queryParams = { id: req.params.id } 
+        const queryParams = { id: req.params.id }
+        app.render(req, res, actualPage, queryParams)
+    })
+
+    server.get('/:year/:month/:day/:slug', (req, res) => {
+        const actualPage = '/post'
+        const queryParams = { year: req.params.year,
+                             month: req.params.month,
+                               day: req.params.day,
+                              slug: req.params.slug }
         app.render(req, res, actualPage, queryParams)
     })
 
