@@ -31,7 +31,7 @@ const CategoryLink = ({ category }) => (
                 text-decoration: none;
                 margin: 12px 0 0 0;
                 color: black;
-                text-family: "Times New Roman";
+                text-family: 'Times New Roman';
                 font-size: 11pt;
             }
 
@@ -45,13 +45,12 @@ const CategoryLink = ({ category }) => (
 
 
 const Header = () => (
-    <div className="header">
+    <div className='header'>
         <MastHeadCap />
-        <div id="masthead">
-            <h1><Link href="/"><a>The Heights</a></Link></h1>
-            <Link href="/"><img src="../static/heights-logo.png"></img></Link>
+        <div id='masthead'>
+            <Link href='/'><img src='../static/heights-header.svg'></img></Link>
         </div>
-        <ul id="masthead-nav">
+        <ul id='masthead-nav'>
             {getCategories().map((category) => (
                 <CategoryLink key={category.id} category={category}/>
             ))}
@@ -65,25 +64,15 @@ const Header = () => (
                 margin-top: 50px;
             }
 
-            #masthead h1 {
-                display: inline-block;
-                text-align: center;
-                margin: 0 auto;
-                padding: 0;
-                vertical-align: bottom;
-                font-size: 30pt;
-            }
-
             #masthead img {
                 display: inline-block;
-                width: 40px;
-                height: 40px;
+                width: 300px;
             }
 
             #masthead a {
                 text-align: center;
                 text-decoration: none;
-                text-family: "Times New Roman";
+                text-family: 'Times New Roman';
                 color: black;
                 margin: auto;
             }
@@ -122,7 +111,7 @@ const Header = () => (
                 text-decoration: none;
                 margin: 12px 0 0 0;
                 color: black;
-                text-family: "Times New Roman";
+                text-family: 'Times New Roman';
                 font-size: 11pt;
             }
 
