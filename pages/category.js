@@ -3,12 +3,23 @@ import MastHeadCap from '../components/header/MastHeadCap'
 
 import Link from 'next/link'
 
+
+
 export default (props) => (
-    <body>
+    <div>
         <Header />
-        <div className="content">
+        <div className='content'>
             <h1>{props.url.query.title}</h1>
             <p>ITS CHANGED</p>
         </div>
-    </body>
+        <style jsx>{`
+            .content {
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+            }
+        `}
+        </style>
+    </div>
 )

@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default (props) => (
     <body>
         <h1>Magazine section!</h1>
-        <div className="content">
+        <div className='content'>
             <p>Different section</p>
         </div>
     </body>
