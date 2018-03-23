@@ -1,71 +1,93 @@
 import Header from '../components/header/Header'
 
-const http = require('http')
-
-function getPost() {
-    
-}
-
+const axios = require('axios')
 
 
 class Post extends React.Component {
 
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        const url = 'http://18.219.114.43/wp-json/wp/v2/posts/14'
+    //console.log(props.url.query.slug)
+    const url = 'http://18.219.114.43/wp-json/wp/v2/posts/22'
 
-        http.get(url, res => {
-            res.setEncoding("utf8")
-            let body = ""
-            res.on("data", data => {
-                body += data
-            })
-            res.on("end", () => {
-                body = JSON.parse(body)
-                this.setState({content: body.content.rendered })
-            })
-        })
-
-        const url2 = ''
-    }
-
-    render() {
-        if (this.state !== null) {
-            return (
-                <div id="body">
-                    <Header />
-                    <div id="content">
-                        <div key={this.state.content} id="wp" dangerouslySetInnerHTML={{__html: this.state.content }} />
-                    </div>
-                    <style jsx>{`
-                        #content {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            flex-direction: column;
-                        }
-    
-                        #wp {
-                            height: 500px;
-                        }
-                    `}
-                    </style>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div id="body">
-                    <Header />
-                    <style jsx>{`
-                    `}
-                    </style>
-                </div>
-            )
-        }
+    axios.get(url)
+      .then(response => {
+        const data = response.data
         
+        const mediaURL =
+          'http://18.219.114.43/wp-json/wp/v2/media/' + data.featured_media
+        const authorURL =
+          'http://18.219.114.43/wp-json/wp/v2/users/' + data.author
+
+        // GET Featured Media 
+        axios.get(mediaURL)
+          .then(response => {
+            const media = response.data
+            this.setState({ featured: media.description.rendered })
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+
+        // GET Author Name
+        axios.get(authorURL)
+          .then(response => {
+            const author = response.data
+            this.setState({ author: author.name })
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+        
+        // Set new state to update the content of the post
+        this.setState({ content: data.content.rendered })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  render() {
+    if (this.state !== null) {
+      return (
+        <div id="body">
+          <Header />
+          <div id="content">
+            <div id="featured" key={this.state.featured} dangerouslySetInnerHTML={{ __html: this.state.featured }} />
+            <div key={this.state.author} dangerouslySetInnerHTML={{ __html: this.state.author }} />
+            <div key={this.state.content} dangerouslySetInnerHTML={{ __html: this.state.content }} />
+          </div>
+          <style jsx>{`
+            #content {
+              display: flex;
+              flex-flow: column wrap;
+              justify-content: center;
+              align-items: center;
+              width: 50%;
+              margin: 0 auto;
+            }
+
+            #featured img {
+              width: 100%;
+            }
+          `}
+          </style>
+        </div>
+      )
     }
+    else {
+      return (
+        <div id="body">
+          <Header />
+          <style jsx>{`
+          `}
+          </style>
+        </div>
+      )
+    }
+
+  }
 }
 
 export default Post
