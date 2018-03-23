@@ -7,34 +7,36 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare()
-.then(() => {
+  .then(() => {
     const server = express()
 
     server.get('/category/:id', (req, res) => {
-        const actualPage = '/category'
-        const queryParams = { id: req.params.id }
-        app.render(req, res, actualPage, queryParams)
+      const actualPage = '/category'
+      const queryParams = { id: req.params.id }
+      app.render(req, res, actualPage, queryParams)
     })
 
     server.get('/:year/:month/:day/:slug', (req, res) => {
-        const actualPage = '/post'
-        const queryParams = { year: req.params.year,
-                             month: req.params.month,
-                               day: req.params.day,
-                              slug: req.params.slug }
-        app.render(req, res, actualPage, queryParams)
+      const actualPage = '/post'
+      const queryParams = {
+        year: req.params.year,
+        month: req.params.month,
+        day: req.params.day,
+        slug: req.params.slug
+      }
+      app.render(req, res, actualPage, queryParams)
     })
 
     server.get('*', (req, res) => {
-        return handle(req, res)
+      return handle(req, res)
     })
 
     server.listen(3000, (err) => {
-        if (err) throw err
-            console.log('> Ready on http://localhost:3000')
+      if (err) throw err
+      console.log('> Ready on http://localhost:3000')
     })
-})
-.catch((ex) => {
+  })
+  .catch((ex) => {
     console.error(ex.stack)
     process.exit(1)
-})
+  })
