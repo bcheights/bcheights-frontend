@@ -25,10 +25,7 @@ const CategoryLink = ({ category }) => (
 
 const NavBar = () => (
   <div>
-    <nav className="navbar navbar-dark fixed-top">
-      <button className="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="/static/menu.svg"></img>
-      </button>
+    <nav className="navbar navbar-expand-lg navbar-light">
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           {getCategories().map((category) => (
@@ -38,25 +35,18 @@ const NavBar = () => (
           <li className="nav-item"><Link href='/centennial'><a className="nav-link">Centennial</a></Link></li>
         </div>
       </div>
-      <form class="form-inline d-lg-inline-block d-none" id="searchBar">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button id="searchButton"><img src="/static/search.svg"></img></button>
-      </form>
-      <button id="searchButton" className="d-inline-block d-lg-none"><img src="/static/search.svg"></img></button>
     </nav>
     <style jsx>{`
       .navbar {
-        background-color: #8D0821;
+        margin: 0;
       }
 
-      button {
-        background-color: Transparent;
-        outline: none;
-        border: none;
-      }
-
-      #searchBar {
-
+      #navbarNavAltMarkup {
+        justify-content: center;
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-width: 1px;
+        margin: 0;
       }
     `}
     </style>

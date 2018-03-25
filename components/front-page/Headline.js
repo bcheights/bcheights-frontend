@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const PostLink = ({ post }) => (
-  <li>
+  <div>
     <Link as={`/${post.year}/${post.month}/${post.day}/${post.slug}`} href={`/post?id=${post.id}`}>
       <a>{post.title}</a>
     </Link>
@@ -27,7 +27,7 @@ const PostLink = ({ post }) => (
       }
     `}
     </style>
-  </li>
+  </div>
 )
 
 
@@ -44,16 +44,14 @@ const Headline = () => (
 
     <style jsx>{`
       #container {
-        border-left-style: solid;
-        border-right-style: solid;
-        border-width: 1px;
+        
       }
 
       img { 
         margin: auto;
         display: flex;
         justify-content: center;
-        width: 50%;
+        max-width: 99%;
       }
       
       p {
