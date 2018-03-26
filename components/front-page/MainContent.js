@@ -31,9 +31,12 @@ const PostLink = ({ post }) => (
 )
 
 
-const Headline = () => (
+const MainContent = () => (
   <div id="container">
-    <Link href='/post'><img src='../../static/placeholder.png'></img></Link>
+    <Link as="/2018/3/23/experts-in-law-praise-free-speech-on-college-campuses"
+        href="/post?year=2018&month=3&day=23&slug=experts-in-law-praise-free-speech-on-college-campuses">
+          <img src='/static/placeholder.png'></img>
+    </Link>
     <p>
       Sample text for headlines....
       This is a test to show extra text
@@ -63,4 +66,4 @@ const Headline = () => (
   </div>
 )
 
-export default Headline
+export default MainContent
