@@ -10,10 +10,12 @@ const axios = require('axios')
 
 class Post extends React.Component {
 
-  static async getInitialProps() {
-    const url = 'http://18.219.114.43/wp-json/wp/v2/posts/22'
+  static async getInitialProps({ req, query }) {
+    const slug = req ? req.params.slug : query.slug
+    const url = 'http://18.219.114.43/wp-json/wp/v2/posts?slug=' + slug
+
     const res = await axios.get(url)
-    const data = await res.data
+    const data = await res.data[0]
 
     // Update URL Strings with post data
     const mediaURL =

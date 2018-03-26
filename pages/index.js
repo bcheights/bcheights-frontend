@@ -1,6 +1,6 @@
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import Headline from '../components/front-page/Headline'
+import MainContent from '../components/front-page/MainContent'
 import LeftSideBar from '../components/front-page/LeftSideBar'
 import RightSideBar from '../components/front-page/RightSideBar'
 
@@ -23,7 +23,7 @@ export default () => (
     <div className="container">
       <div className="row">
         <div className="col-12 col-md-6">
-          <Headline />
+          <MainContent />
         </div>
         <div className="col-12 col-md-3 order-md-first">
           <LeftSideBar />
