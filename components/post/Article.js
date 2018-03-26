@@ -16,8 +16,7 @@ const Article = ({title, featured, author, date, content}) => {
         </div>
         <img src={featured} />
       </div>
-      <div id="content" 
-        dangerouslySetInnerHTML={{ __html: content }} />
+      <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
       
       <style jsx>{`
         #article {
