@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import Head from 'next/head'
+import Link from 'next/link';
+import Head from 'next/head';
 
 
 function getCategories() {
@@ -10,7 +10,7 @@ function getCategories() {
     { id: 'opinions', title: 'Opinions' },
     { id: 'metro', title: 'Metro' },
     { id: 'blog', title: 'Blog' }
-  ]
+  ];
 }
 
 const CategoryLink = ({ category }) => (
@@ -18,9 +18,8 @@ const CategoryLink = ({ category }) => (
     <Link as={`/category/${category.id}`} href={`/category?title=${category.title}`}>
       <a className="nav-link">{category.title}</a>
     </Link>
-  </li>
-  
-)
+  </li> 
+);
 
 
 const NavBar = () => (
@@ -51,6 +50,6 @@ const NavBar = () => (
     `}
     </style>
   </div>
-)
+);
 
-export default NavBar
+export default NavBar;

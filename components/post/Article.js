@@ -1,8 +1,8 @@
 
 function getDate(dateString) {
-  var d = new Date(dateString)
+  var d = new Date(dateString);
   return '- ' + d.toLocaleDateString('en-us', {month: 'long'}) 
-         + ' ' + d.getDay() + ', ' + d.getFullYear()
+         + ' ' + d.getDay() + ', ' + d.getFullYear();
 }
 
 const Article = ({title, featured, author, date, content}) => {
@@ -14,7 +14,7 @@ const Article = ({title, featured, author, date, content}) => {
           <p>{author}</p>
           <p>{getDate(date)}</p>
         </div>
-        <img src={featured} />
+        <img src={featured} className="img-responsive" />
       </div>
       <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
       
@@ -37,10 +37,6 @@ const Article = ({title, featured, author, date, content}) => {
           max-width: 500px;
         }
 
-        #headline h2 {
-          width: 80%;
-        }
-
         #details {
           display: flex;
           flex-flow: row wrap;
@@ -59,7 +55,7 @@ const Article = ({title, featured, author, date, content}) => {
       `}
       </style>
     </div>
-  )
-}
+  );
+};
 
-export default Article
+export default Article;

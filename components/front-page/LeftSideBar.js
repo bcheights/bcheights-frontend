@@ -7,25 +7,11 @@ const LeftSideBar = () => (
     <p>Top Story!!! Woohoo!!!</p>
     <style jsx>{`
       img {
-        width: 80%;
-      }
-
-      #content {
-        width: 10%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      p {
-        text-align: center;
-        margin: 0;
-        padding: 0;
+        max-width: 99%;
       }
     `}
     </style>
   </div>
-)
+);
 
-export default LeftSideBar
+export default LeftSideBar;

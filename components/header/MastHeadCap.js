@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import Head from 'next/head'
+import Link from 'next/link';
+import Head from 'next/head';
 
 
 function getCategories() {
@@ -10,7 +10,7 @@ function getCategories() {
     { id: 'opinions', title: 'Opinions' },
     { id: 'metro', title: 'Metro' },
     { id: 'blog', title: 'Blog' }
-  ]
+  ];
 }
 
 const CategoryLink = ({ category }) => (
@@ -19,8 +19,7 @@ const CategoryLink = ({ category }) => (
       <a className="nav-link">{category.title}</a>
     </Link>
   </li>
-  
-)
+);
 
 
 const NavBar = () => (
@@ -29,6 +28,14 @@ const NavBar = () => (
       <button className="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <img src="/static/menu.svg"></img>
       </button>
+
+      <form className="form-inline d-lg-inline-block d-none" id="searchBar">
+        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+        <button id="searchButton"><img src="/static/search.svg"></img></button>
+      </form>
+      <button id="searchButton" className="d-inline-block d-lg-none"><img src="/static/search.svg"></img></button>
+
+      {/* Below div will never show --> Used for Navbar toggle */}
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           {getCategories().map((category) => (
@@ -38,11 +45,7 @@ const NavBar = () => (
           <li className="nav-item"><Link href='/centennial'><a className="nav-link">Centennial</a></Link></li>
         </div>
       </div>
-      <form className="form-inline d-lg-inline-block d-none" id="searchBar">
-        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button id="searchButton"><img src="/static/search.svg"></img></button>
-      </form>
-      <button id="searchButton" className="d-inline-block d-lg-none"><img src="/static/search.svg"></img></button>
+      {/* End of what won't be shown */}
     </nav>
     <style jsx>{`
       .navbar {
@@ -61,6 +64,6 @@ const NavBar = () => (
     `}
     </style>
   </div>
-)
+);
 
-export default NavBar
+export default NavBar;
