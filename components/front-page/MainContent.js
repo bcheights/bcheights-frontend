@@ -2,11 +2,6 @@ import Link from 'next/link';
 import Summary from '../post/Summary';
 
 
-function getTopStories() {
-
-}
-
-
 const MainContent = () => (
   <div id="container">
     <Link as="/2018/3/23/experts-in-law-praise-free-speech-on-college-campuses"

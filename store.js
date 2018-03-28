@@ -1,0 +1,25 @@
+import { applyMiddleware, createStore } from "redux";
+import { logger } from "redux-logger";
+import thunk from "redux-thunk";
+import promise from "redux-promise-middleware";
+
+import reducer from "./reducers"
+import article from "./reducers/articleReducer";
+
+
+const middleware = applyMiddleware(logger, thunk, promise());
+
+let store = null;
+
+const makeStore = (initialState, isServer) => {
+  if (isServer && typeof window === 'undefined') {
+    return createStore(reducer, initialState, middleware);
+  } else {
+    if (!store) {
+      store = createStore(reducer, initialState, middleware);
+    }
+    return store;
+  }
+};
+
+export default makeStore;
