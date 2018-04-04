@@ -1,25 +1,27 @@
-import { applyMiddleware, createStore } from "redux";
-import { logger } from "redux-logger";
-import thunk from "redux-thunk";
-import promise from "redux-promise-middleware";
+import { applyMiddleware, createStore } from "redux"
+import { logger } from "redux-logger"
+import thunk from "redux-thunk"
+import createSagaMiddleware from "redux-saga"
 
 import reducer from "./reducers"
-import article from "./reducers/articleReducer";
+import rootSaga from "./saga"
 
+const saga = createSagaMiddleware()
+const middleware = applyMiddleware(logger, thunk, saga)
 
-const middleware = applyMiddleware(logger, thunk, promise());
+let store = null
 
-let store = null;
 
 const makeStore = (initialState, isServer) => {
   if (isServer && typeof window === 'undefined') {
-    return createStore(reducer, initialState, middleware);
+    return createStore(reducer, initialState, middleware)
   } else {
     if (!store) {
-      store = createStore(reducer, initialState, middleware);
+      store = createStore(reducer, initialState, middleware)
     }
-    return store;
+    saga.run(rootSaga)
+    return store
   }
-};
+}
 
-export default makeStore;
+export default makeStore
