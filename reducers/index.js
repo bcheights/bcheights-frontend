@@ -1,7 +1,9 @@
 import { combineReducers } from "redux"
 
-import article from "./articleReducer";
+import singleArticle from "./singleArticleReducer";
+import featuredArticle from "./featuredArticleReducer";
 
 export default combineReducers({
-  article
+  singleArticle,
+  featuredArticle
 });
