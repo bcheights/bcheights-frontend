@@ -1,29 +1,43 @@
-import Link from 'next/link';
-import Summary from '../post/Summary';
+// import components
+import Summary from '../post/Summary'
 
+// import actions & 3rd party libraries
+import { fetchFeatured } from "../../actions"
+import { connect } from "react-redux"
 
-const MainContent = () => (
-  <div id="container">
-    <Link as="/2018/3/23/experts-in-law-praise-free-speech-on-college-campuses"
-        href="/post?year=2018&month=3&day=23&slug=experts-in-law-praise-free-speech-on-college-campuses">
-        <img src='/static/placeholder.png'></img>
-    </Link>
+// connect component to store
+@connect(store => {
+  return {articles: store.featuredArticle.featured}
+}, { fetchFeatured })
+class MainContent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-    <style jsx>{`
-      img { 
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        max-width: 99%;
-      }
-      
-      p {
-        margin: auto;
-        text-align: center;
-      }
-    `}
-    </style>
-  </div>
-);
+  componentDidMount() {
+    this.props.fetchFeatured()
+  }
 
-export default MainContent;
+  render() {
+    const articles = this.props.articles ? this.props.articles : []
+
+    return (
+      <div className="container">
+        <ul>
+        {articles.map(article => (
+          <Summary key={article.slug} article={article} />
+        ))}
+        </ul>
+        <style jsx>{`
+          ul {
+            list-style-type: none
+            padding: 0
+          }
+        `}
+        </style>
+      </div>
+    )
+  }
+}
+
+export default MainContent

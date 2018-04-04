@@ -40,6 +40,10 @@ const NavBar = () => (
         margin: 0;
       }
 
+      a {
+        color: black;
+      }
+
       #navbarNavAltMarkup {
         justify-content: center;
         border-top-style: solid;
