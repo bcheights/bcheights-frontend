@@ -1,13 +1,12 @@
 import { applyMiddleware, createStore } from "redux"
 import { logger } from "redux-logger"
-import thunk from "redux-thunk"
 import createSagaMiddleware from "redux-saga"
 
 import reducer from "./reducers"
 import rootSaga from "./saga"
 
 const saga = createSagaMiddleware()
-const middleware = applyMiddleware(logger, thunk, saga)
+const middleware = applyMiddleware(logger, saga)
 
 let store = null
 
