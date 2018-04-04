@@ -6,7 +6,7 @@ import Footer from "../components/footer/Footer";
 
 // import services & actions
 import makeStore from "../store";
-import { fetchSingleArticle } from "../actions";
+import { fetchPost } from "../actions";
 
 // import 3rd party libraries
 import Head from 'next/head';
@@ -24,7 +24,7 @@ class Post extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchSingleArticle(this.props.slug));
+    this.props.dispatch(fetchPost(this.props.slug));
   }
 
   render() {

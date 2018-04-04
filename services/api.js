@@ -23,7 +23,7 @@ export const fetchFeaturedMedia = id => callApi(`/media/${id}`)
 export const fetchFeaturedArticles = id => callApi(`/posts?tags=${id}`)
 
 // Returns post info from slug id
-export const getSingleArticle = async slug => {
+export const fetchPostData = async slug => {
   // GET Article Data & Featured Image & Author
   const post = await fetchPost(slug)
   return parsePostData(post[0])
