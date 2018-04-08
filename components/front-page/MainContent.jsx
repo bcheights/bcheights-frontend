@@ -30,8 +30,8 @@ class MainContent extends React.Component {
         </ul>
         <style jsx>{`
           ul {
-            list-style-type: none
-            padding: 0
+            list-style-type: none;
+            padding: 0;
           }
         `}
         </style>
