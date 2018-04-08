@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import React from "react";
+import Link from 'next/link'
+import React from "react"
 
 
 class Summary extends React.Component {
   render() {
-    const { title, author, date, featured, excerpt, slug } = this.props.article;
-    var d = new Date(date);
+    const { title, author, date, featured, excerpt, slug } = this.props.article
+    var d = new Date(date)
 
     return (
       <li>
@@ -39,8 +39,8 @@ class Summary extends React.Component {
         `}
         </style>
       </li>
-    );
+    )
   }
 }
 
-export default Summary;
+export default Summary

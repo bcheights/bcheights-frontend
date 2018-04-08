@@ -1,15 +1,15 @@
 // import components
-import Header from '../components/header/Header';
-import Article from '../components/post/Article';
-import RelatedArticles from '../components/post/RelatedArticles';
-import Footer from "../components/footer/Footer";
+import Header from '../components/header/Header'
+import Article from '../components/post/Article'
+import RelatedArticles from '../components/post/RelatedArticles'
+import Footer from "../components/footer/Footer"
 
 // import services & actions
-import makeStore from "../store";
-import { fetchPost } from "../actions";
+import makeStore from "../store"
+import { fetchPost } from "../actions"
 
 // import 3rd party libraries
-import Head from 'next/head';
+import Head from 'next/head'
 import withRedux from "next-redux-wrapper"
 import { connect } from "react-redux"
 
@@ -19,12 +19,12 @@ import { connect } from "react-redux"
 })
 class Post extends React.Component {
   static async getInitialProps({ store, isServer, req, query }) {
-    const slug = isServer ? req.params.slug : query.slug;
-    return {slug};
+    const slug = isServer ? req.params.slug : query.slug
+    return {slug}
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchPost(this.props.slug));
+    this.props.dispatch(fetchPost(this.props.slug))
   }
 
   render() {
@@ -58,11 +58,11 @@ class Post extends React.Component {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
       </div>
-    );
+    )
   }
 }
 
 
-Post = withRedux(makeStore, state => state)(Post);
+Post = withRedux(makeStore, state => state)(Post)
 
 export default Post

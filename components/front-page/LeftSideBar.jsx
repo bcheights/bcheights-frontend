@@ -12,6 +12,6 @@ const LeftSideBar = () => (
     `}
     </style>
   </div>
-);
+)
 
-export default LeftSideBar;
+export default LeftSideBar

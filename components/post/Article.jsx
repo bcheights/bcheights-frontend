@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 
 
 function getDate(dateString) {
-  var d = new Date(dateString);
+  var d = new Date(dateString)
   return `- ${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
 }
 

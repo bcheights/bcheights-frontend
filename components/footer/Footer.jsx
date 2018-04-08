@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 const Footer = () => (
   <div className="container">
@@ -35,6 +35,6 @@ const Footer = () => (
     `}
     </style>
   </div>
-);
+)
 
-export default Footer;
+export default Footer

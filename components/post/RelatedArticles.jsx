@@ -16,6 +16,6 @@ const RelatedArticles = () => (
     `}
     </style>
   </div>
-);
+)
 
-export default RelatedArticles;
+export default RelatedArticles
