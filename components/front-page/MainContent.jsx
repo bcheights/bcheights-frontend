@@ -1,5 +1,5 @@
 // import components
-import Summary from '../post/Summary'
+import LargeThumbnail from '../thumbnail/LargeThumbnail'
 
 // import actions & 3rd party libraries
 import { fetchFeatured } from "../../actions"
@@ -25,7 +25,7 @@ class MainContent extends React.Component {
       <div className="container">
         <ul>
         {articles.map(article => (
-          <Summary key={article.slug} article={article} />
+          <LargeThumbnail key={article.slug} article={article} />
         ))}
         </ul>
         <style jsx>{`
