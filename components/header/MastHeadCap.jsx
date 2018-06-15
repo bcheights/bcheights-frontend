@@ -25,7 +25,7 @@ const CategoryLink = ({ category }) => (
 const NavBar = () => (
   <div>
     <nav className="navbar navbar-dark fixed-top">
-      <button className="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <img src="/static/menu.svg"></img>
       </button>
 
