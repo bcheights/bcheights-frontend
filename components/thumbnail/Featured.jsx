@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from "react"
 
 
-class LargeThumbnail extends React.Component {
+class Featured extends React.Component {
   render() {
     const { title, author, date, featured, excerpt, slug } = this.props.article
     var d = new Date(date)
@@ -43,4 +43,4 @@ class LargeThumbnail extends React.Component {
   }
 }
 
-export default LargeThumbnail
+export default Featured
