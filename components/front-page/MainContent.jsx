@@ -1,5 +1,6 @@
 // import components
-import LargeThumbnail from '../thumbnail/LargeThumbnail'
+import Featured from '../thumbnail/Featured'
+import MediumNoSummary from '../thumbnail/MediumNoSummary'
 
 // import actions & 3rd party libraries
 import { fetchFeatured } from "../../actions"
@@ -7,7 +8,21 @@ import { connect } from "react-redux"
 
 // connect component to store
 @connect(store => {
-  return {articles: store.featuredArticle.featured}
+  var featured = []
+  var otherArticles = []
+  if (store.featuredArticle.featured.length > 1) {
+    featured = store.featuredArticle.featured.slice(0, 1),
+    otherArticles = store.featuredArticle.featured.slice(1,store.featuredArticle.featured.length) 
+  }
+  else {
+    featured = store.featuredArticle.featured.slice(0, 1)
+    otherArticles = []
+  }
+  return {
+    featured: featured,
+    otherArticles: otherArticles,
+  }
+  
 }, { fetchFeatured })
 class MainContent extends React.Component {
   constructor(props) {
@@ -19,14 +34,22 @@ class MainContent extends React.Component {
   }
 
   render() {
-    const articles = this.props.articles ? this.props.articles : []
+    const featured = this.props.featured ? this.props.featured : []
+    const otherArticles = this.props.otherArticles ? this.props.otherArticles : []
+
+    console.log(featured)
 
     return (
       <div className="container">
         <ul>
-        {articles.map(article => (
-          <LargeThumbnail key={article.slug} article={article} />
-        ))}
+          {featured.map(featured => (
+            <Featured key={featured.slug} article={featured} />
+          ))}
+          {/*
+          {otherArticles.map(article => (
+            <MediumNoSummary key={article.slug} article={article} />
+          ))}
+        */}
         </ul>
         <style jsx>{`
           ul {
