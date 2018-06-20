@@ -2,23 +2,30 @@ import Link from 'next/link'
 import React from "react"
 
 
-class Featured extends React.Component {
+class LargeImage extends React.Component {
   render() {
-    const { title, author, date, featured, excerpt, slug } = this.props.article
+    const { title, author, date, featured, slug } = this.props.article
     var d = new Date(date)
 
+    const excerpt = this.props.withSummary ? this.props.article.excerpt : null
+
     return (
-      <li>
-        <Link as={`/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+      <div className="container">
+        <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
             href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
           <img src={featured}></img>
         </Link>
-        <Link as={`/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+        <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
             href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
         <style jsx>{`
+          div {
+            padding: 0;
+            margin: 0;
+          }
+
           img { 
             margin: auto;
             display: flex;
@@ -29,18 +36,19 @@ class Featured extends React.Component {
           a {
             text-decoration: none;
             color: black;
-            font-size: 24px;
+            font-size: 1.25em;
+            font-weight: bold;
           }
 
           #text {
-            font-size: 14px;
+            font-size: 0.75em;
           }
           
         `}
         </style>
-      </li>
+      </div>
     )
   }
 }
 
-export default Featured
+export default LargeImage
