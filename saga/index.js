@@ -5,47 +5,59 @@ import { api } from '../services'
 function* loadPost({ slug }) {
   try {
     // GET post data by matching the slug
-    const articleData = yield api.fetchPostData(slug)
+    const postData = yield api.fetchPostData(slug)
 
     yield put({
-      type: "FETCH_ARTICLE_SUCCESS",
-      payload: articleData,
+      type: "FETCH_POST_SUCCESS",
+      payload: postData,
     })
   } catch(err) {
     yield put({
-      type: "FETCH_ARTICLE_FAILURE",
+      type: "FETCH_POST_FAILURE",
       payload: err,
     })
   }
 }
 
-function* loadFeatured() {
+function* loadCollection({ tagID }) {
   try {
     // ID: 3 --> Featured Tag ID
-    const data = yield api.fetchFeaturedArticles(3)
-    var featured = []
+    const actionType = getCollectionType(tagID)
+    yield put({
+      type: `FETCH_${actionType}_REQUEST`
+    })
+    const data = yield api.fetchCollection(tagID)
+    var collection = []
     var parsedData = {}
 
-    // Parse each featured article
+    // Parse each collection article
     for (let i=0; i < data.length; i++) {
       parsedData = yield api.parsePostData(data[i])
-      featured.push(parsedData)
+      collection.push(parsedData)
     }
     // Once finished --> Send success message
     yield put({
-      type: 'FETCH_FEATURED_SUCCESS', 
-      payload: featured
+      type: `FETCH_${actionType}_SUCCESS`, 
+      payload: collection
     })
   } catch(error) {
     yield put({
-      type: 'FETCH_FEATURED_FAILURE', 
+      type: `FETCH_${actionType}_FAILURE`, 
       error
     })
   }
 }
 
+function getCollectionType(tagID) {
+  switch(tagID) {
+    case 3: {
+      return 'FEATURED'
+    }
+  }
+}
+
 // Watch for FETCH_FEATURED_REQUEST action and call loadFeatured
 export default function* rootSaga() {
-  yield takeEvery('FETCH_FEATURED_REQUEST', loadFeatured)
-  yield takeEvery('FETCH_ARTICLE_REQUEST', loadPost)
+  yield takeEvery('FETCH_COLLECTION_REQUEST', loadCollection)
+  yield takeEvery('FETCH_POST_REQUEST', loadPost)
 }

@@ -8,11 +8,11 @@ function getDate(dateString) {
 
 @connect(store => {
   return {
-    title: store.singleArticle.title,
-    featured: store.singleArticle.featured,
-    author: store.singleArticle.author,
-    date: store.singleArticle.date,
-    content: store.singleArticle.content
+    title: store.post.title,
+    featured: store.post.featured,
+    author: store.post.author,
+    date: store.post.date,
+    content: store.post.content
   }
 })
 class Article extends React.Component {

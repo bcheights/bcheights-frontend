@@ -19,8 +19,8 @@ async function callApi(endpoint) {
 // Main api services
 export const fetchPost = slug => callApi(`/posts?slug=${slug}`)
 export const fetchAuthor = id => callApi(`/users/${id}`)
-export const fetchFeaturedMedia = id => callApi(`/media/${id}`)
-export const fetchFeaturedArticles = id => callApi(`/posts?tags=${id}`)
+export const fetchFeaturedImage = id => callApi(`/media/${id}`)
+export const fetchCollection = id => callApi(`/posts?tags=${id}`)
 
 // Returns post info from slug id
 export const fetchPostData = async slug => {
@@ -32,7 +32,7 @@ export const fetchPostData = async slug => {
 // Extract the information from WP GET Request for single post
 export const parsePostData = async post => {
   // GET Article Data & Featured Image & Author
-  const mediaData  = await fetchFeaturedMedia(post.featured_media)  
+  const mediaData  = await fetchFeaturedImage(post.featured_media)  
   const authorData = await fetchAuthor(post.author)
 
   // Set data to be dispatched
@@ -41,7 +41,7 @@ export const parsePostData = async post => {
     featured : mediaData.guid.rendered,
     author   : authorData.name,
     date     : post.modified,
-    content  : post.content.rendered,
+    content  : changeRoute(post.content.rendered),
     excerpt  : changeRoute(post.excerpt.rendered),
     slug     : post.slug
   }

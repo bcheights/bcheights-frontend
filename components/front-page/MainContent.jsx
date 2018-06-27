@@ -3,40 +3,28 @@ import LargeImage from '../thumbnail/LargeImage'
 import SideImage from '../thumbnail/SideImage'
 
 // import actions & 3rd party libraries
-import { fetchFeatured } from "../../actions"
+import { fetchCollection } from "../../actions"
 import { connect } from "react-redux"
 
 // connect component to store
 @connect(store => {
-  var featured = []
-  var topStories = []
-  if (store.featuredArticle.featured.length > 1) {
-    featured = store.featuredArticle.featured.slice(0, 1)
+  let featured = store.collections.featured
+  let topStories = store.collections.topStory
 
-    const numArticles = 
-      store.featuredArticle.featured.length > 6
-        ? 6
-        : store.featuredArticle.featured.length
-    // Update w/ actual slice when articles are put in
-    topStories = store.featuredArticle.featured.slice(0, numArticles) 
-  }
-  else {
-    featured = store.featuredArticle.featured.slice(0, 1)
-    topStories = []
-  }
   return {
-    featured: featured,
-    topStories: topStories,
+    featured,
+    topStories,
   }
   
-}, { fetchFeatured })
+}, { fetchCollection })
 class MainContent extends React.Component {
   constructor(props) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.fetchFeatured()
+    // Fetch Featured Collection
+    this.props.fetchCollection(3)
   }
 
   render() {
@@ -51,25 +39,29 @@ class MainContent extends React.Component {
             <LargeImage key={featured.slug} article={featured} withSummary={true} />
           ))}
         </ul>
+        {/* Ad Placement */}
+        <img id="ad" src="../../static/placeholder.png" className="mx-auto" />
         {/* List for Top Stories with LargeImage */}
         {/* Limited to two articles */}
         <div className="container" id="top-stories-large">
           <div className="row">
             {topStories.map(article => (
-              <div className="col-12 col-md-6" id="no-sum-large">
+              <div className="col-12 col-md-6" id="no-sum-large" key={article.slug}>
                 <ul>
-                  <LargeImage key={article.slug} article={article} withSummary={false} />
+                  <LargeImage article={article} withSummary={false} />
                 </ul>
               </div>
             ))}
           </div>
         </div>
+        {/* Ad Placement */}
+        <img id="ad" src="../../static/placeholder.png" className="mx-auto" />
         {/* List for Featured Stories with SideImage */}
         <div className="container" id="side-image-stories">
           {topStories.map(article => (
-            <div className="row">
+            <div className="row"  key={article.slug}>
               <ul>
-                <SideImage key={article.slug} article={article} withSummary={true} />
+                <SideImage article={article} withSummary={true} />
               </ul>
             </div>
           ))}   
@@ -80,15 +72,25 @@ class MainContent extends React.Component {
             padding: 0;
             margin: 0;
           }
+          #ad {
+            align-item: center;
+            width: 100%;
+            max-width: 100%;
+            height: 8em;
+            margin: 1em;
+            padding: 0;
+          }
           #top-stories-large{
-            margin-top: 2em;
+            margin: 2em auto;
+            padding: 0.4em;
           }
           #no-sum-large {
             padding: 0;
             margin: 0;
           }
           #side-image-stories {
-            margin-top: 1em;
+            margin: 1em auto;
+            padding: 0.4em;
           }
         `}
         </style>

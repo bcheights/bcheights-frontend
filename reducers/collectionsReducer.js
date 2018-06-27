@@ -1,5 +1,7 @@
 export default function reducer(state={
   featured: [],
+  topStory: [],
+  related: [],
   error: null,
   fetching: false,
   fetched: false,

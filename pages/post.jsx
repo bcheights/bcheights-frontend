@@ -15,7 +15,7 @@ import { connect } from "react-redux"
 
 
 @connect(store => {
-  return {title: store.singleArticle.content.title}
+  return {title: store.post.content.title}
 })
 class Post extends React.Component {
   static async getInitialProps({ store, isServer, req, query }) {
