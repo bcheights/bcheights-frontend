@@ -2,10 +2,15 @@ import Link from 'next/link'
 import React from "react"
 
 
+function getDate(dateString) {
+  let d = new Date(dateString)
+  return `${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
+}
+
 class LargeImage extends React.Component {
   render() {
     const { title, author, date, featured, slug } = this.props.article
-    var d = new Date(date)
+    let d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
 
@@ -20,6 +25,7 @@ class LargeImage extends React.Component {
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
+        <p id="date">Section | {getDate(date)}</p>
         <style jsx>{`
           div {
             padding: 0;
@@ -43,7 +49,9 @@ class LargeImage extends React.Component {
           #text {
             font-size: 0.75em;
           }
-          
+          #date {
+            font-size: 13px;
+          }
         `}
         </style>
       </div>

@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import React from "react"
 
+function getDate(dateString) {
+  var d = new Date(dateString)
+  return `${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
+}
+
 
 class NoImage extends React.Component {
   render() {
@@ -13,13 +18,10 @@ class NoImage extends React.Component {
       <div className="container">
         <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
             href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-          <img src={featured}></img>
-        </Link>
-        <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
-            href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
+        <p id="date">Section | {getDate(date)}</p>
         <style jsx>{`
           div {
             padding: 0;
@@ -43,7 +45,9 @@ class NoImage extends React.Component {
           #text {
             font-size: 13px;
           }
-          
+          #date {
+            font-size: 13px;
+          }
         `}
         </style>
       </div>
