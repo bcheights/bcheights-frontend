@@ -28,6 +28,12 @@ app.prepare()
       app.render(req, res, actualPage, queryParams)
     })
 
+    server.get('/search/:searchString', (req, res) => {
+      const actualPage = '/search'
+      const queryParams = { searchString: req.params.searchString }
+      app.render(req, res, actualPage, queryParams)
+    })
+
     server.get('/post/:year/:month/:day/:slug', (req, res) => {
       const actualPage = '/post'
       const queryParams = {
