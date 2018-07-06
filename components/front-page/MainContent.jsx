@@ -25,18 +25,20 @@ class MainContent extends React.Component {
   componentDidMount() {
     // Fetch Featured Collection
     this.props.fetchCollection(3)
+    this.props.fetchCollection(6)
   }
 
   render() {
-    const featured = this.props.featured ? this.props.featured : []
-    const topStories = this.props.topStories ? this.props.topStories : []
+    const featured = this.props.featured ? this.props.featured.slice(1) : []
+    const headline = this.props.featured ? this.props.featured.slice(0,1) : []
+    const topStories = this.props.topStories ? this.props.topStories.slice(0,2) : []
 
     return (
       <div className="container">
         {/* Featured Headline with LargeImage */}
         <ul>
-          {featured.map(featured => (
-            <LargeImage key={featured.slug} article={featured} withSummary={true} />
+          {headline.map(headline => (
+            <LargeImage key={headline.slug} article={headline} withSummary={true} />
           ))}
         </ul>
         {/* Ad Placement */}
@@ -58,7 +60,7 @@ class MainContent extends React.Component {
         <img id="ad" src="../../static/placeholder.png" className="mx-auto" />
         {/* List for Featured Stories with SideImage */}
         <div className="container" id="side-image-stories">
-          {topStories.map(article => (
+          {featured.map(article => (
             <div className="row"  key={article.slug}>
               <ul>
                 <SideImage article={article} withSummary={true} />
