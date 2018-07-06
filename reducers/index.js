@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 
-import post from "./postReducer";
-import collections from "./collectionsReducer";
+import post from "./post";
+import collections from "./collections";
 
 export default combineReducers({
   post,

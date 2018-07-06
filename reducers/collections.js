@@ -32,6 +32,31 @@ export default function reducer(state={
         fetched: false
       }
     }
+    case "FETCH_TOP_STORY_REQUEST": {
+      return {
+        ...state,
+        topStory: [],
+        fetching: true,
+        fetched: false
+      }
+    }
+    case "FETCH_TOP_STORY_SUCCESS": {
+      return {
+        ...state,
+        topStory: action.payload,
+        fetching: false,
+        fetched: true
+      }
+    }
+    case "FETCH_TOP_STORY_FAILURE": {
+      return {
+        ...state,
+        topStory: [],
+        error: action.payload,
+        fetching: false,
+        fetched: true
+      }
+    }
     default:
       return state
   }

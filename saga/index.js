@@ -27,8 +27,8 @@ function* loadCollection({ tagID }) {
       type: `FETCH_${actionType}_REQUEST`
     })
     const data = yield api.fetchCollection(tagID)
-    var collection = []
-    var parsedData = {}
+    let collection = []
+    let parsedData = {}
 
     // Parse each collection article
     for (let i=0; i < data.length; i++) {
@@ -52,6 +52,9 @@ function getCollectionType(tagID) {
   switch(tagID) {
     case 3: {
       return 'FEATURED'
+    }
+    case 6: {
+      return 'TOP_STORY'
     }
   }
 }
