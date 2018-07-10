@@ -17,6 +17,11 @@ class Page extends React.Component {
   static getInitialProps({ store, isServer }) {
     return { isServer }
   }
+
+  componentDidMount() {
+    // this.props.store.
+  }
+
   render() {
     return (
       <div>
@@ -39,12 +44,14 @@ class Page extends React.Component {
             <div className="col-12 col-md-3 order-md-first" id="left">
               <LeftSideBar />
             </div>
-            <div className="col-12 col-md-3 order-md-last" id="right">
+            <div className="col-12 col-md-3 order-md-last float-left" id="right">
               <RightSideBar />
             </div>
           </div>
         </div>
-        <Footer />
+        <div id="footer">
+          <Footer />
+        </div>
         <style jsx>{`
           #content {
             padding: 0;
@@ -57,6 +64,9 @@ class Page extends React.Component {
           }
           #right {
             padding: 0.15em;        
+          }
+          #footer {
+            padding-top: 10px;
           }
         `}
         </style>
