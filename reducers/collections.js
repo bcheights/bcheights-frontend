@@ -1,6 +1,7 @@
 export default function reducer(state={
   featured: [],
   topStory: [],
+  search: [],
   related: [],
   error: null,
   fetching: false,
@@ -52,6 +53,31 @@ export default function reducer(state={
       return {
         ...state,
         topStory: [],
+        error: action.payload,
+        fetching: false,
+        fetched: true
+      }
+    }
+    case "FETCH_SEARCH_REQUEST": {
+      return {
+        ...state,
+        search: [],
+        fetching: true,
+        fetched: false
+      }
+    }
+    case "FETCH_SEARCH_SUCCESS": {
+      return {
+        ...state,
+        search: action.payload,
+        fetching: false,
+        fetched: true,
+      }
+    }
+    case "FETCH_SEARCH_FAILURE": {
+      return {
+        ...state,
+        search: [],
         error: action.payload,
         fetching: false,
         fetched: true
