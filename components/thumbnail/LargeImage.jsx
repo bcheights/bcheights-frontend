@@ -36,6 +36,8 @@ class LargeImage extends React.Component {
             margin: auto;
             display: flex;
             justify-content: center;
+            width: ${this.props.isHeadline ? 600 : 300}px;
+            height: ${this.props.isHeadline ? 300 : 150}px;
             max-width: 99%;
           }
 

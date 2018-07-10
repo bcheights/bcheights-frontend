@@ -38,7 +38,7 @@ class MainContent extends React.Component {
         {/* Featured Headline with LargeImage */}
         <ul>
           {headline.map(headline => (
-            <LargeImage key={headline.slug} article={headline} withSummary={true} />
+            <LargeImage key={headline.slug} article={headline} withSummary={true} isHeadline={true} />
           ))}
         </ul>
         {/* Ad Placement */}
