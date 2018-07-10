@@ -18,7 +18,7 @@ class RightSideBar extends React.Component {
     const featured = this.props.featured ? this.props.featured : []
 
     return (
-      <div id="container">
+      <div id="content">
         <div className="border-bottom border-dark" id="top-story">
           {topStories.map(article => (
             <div className="col-12" id="no-sum-large" key={article.slug}>
@@ -38,6 +38,9 @@ class RightSideBar extends React.Component {
           ))}
         </div>
         <style jsx>{`
+        #content {
+          margin-left: 10px;
+        }
           ul {
             list-style-type: none;
             padding: 0;
@@ -47,6 +50,11 @@ class RightSideBar extends React.Component {
               padding-bottom: 5px;
               margin-bottom: 10px;
           }
+          #no-sum-large {
+            padding: 0;
+            margin: 0;
+          }
+
           #no-sum-large.ul {
             margin: 10px;
           }
