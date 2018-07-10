@@ -18,25 +18,24 @@ class SideImage extends React.Component {
     console.log(excerpt)
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-7">
+      <div className="container" id="content">
+        
+        <div className="">
+          <div className="" id="side-image">
             <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
                 href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-              <a>{title}</a>
+              <img className="img-responsive float-right" src={featured}></img>
             </Link>
-            <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
-            <p id="date">Section | {getDate(date)}</p>
-          </div>
-          <div className="col-5 my-auto" id="side-image">
-            <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
-                href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-              <img src={featured}></img>
-            </Link>
-            </div>
-          </div>
+          </div>  
+          <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+              href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
+            <a id="title">{title}</a>
+          </Link>
+          <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
+          <p id="date">Section | {getDate(date)}</p>
+        </div>
         <style jsx>{`
-          div {
+          #content {
             padding: 0;
             margin: 1em auto;
           }
@@ -44,18 +43,19 @@ class SideImage extends React.Component {
             margin: 0;
             padding: 0;
           }
-
+          #title {
+            margin-right: 7px;
+          }
           img { 
-            margin: auto;
-            display: flex;
-            justify-content: center;
+            width: 100px;
+            height: 100px;
             max-width: 99%;
           }
 
           a {
             text-decoration: none;
             color: black;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: bold;
           }
 
