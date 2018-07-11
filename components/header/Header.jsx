@@ -1,8 +1,8 @@
-import MastHeadCap from './MastHeadCap';
-import NavBar from './NavBar';
+import MastHeadCap from './MastHeadCap'
+import NavBar from './NavBar'
 
-import Link from 'next/link';
-import Head from 'next/head';
+import Link from 'next/link'
+import Head from 'next/head'
 
 
 
@@ -32,6 +32,6 @@ const Header = () => (
     `}
     </style>
   </div>
-);
+)
 
-export default Header;
+export default Header

@@ -1,25 +1,42 @@
 // import components
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import MainContent from '../components/front-page/MainContent'
-import LeftSideBar from '../components/front-page/LeftSideBar'
-import RightSideBar from '../components/front-page/RightSideBar'
+import LargeImage from '../components/thumbnail/LargeImage'
+import SideImage from '../components/thumbnail/SideImage'
+
+// import services/store
+import makeStore from "../store"
+import { fetchSearch } from '../actions'
 
 // import 3rd party libraries
 import Head from 'next/head'
-import { connect } from "react-redux"
+import withRedux from "next-redux-wrapper"
+import { connect } from 'react-redux'
 
-
+@connect(store => {
+  return {
+    searchResults: store.collections.search
+  }
+}, { fetchSearch })
 class Page extends React.Component {
-  static getInitialProps({ store, isServer }) {
-    return { isServer }
+  static getInitialProps({ store, isServer, req, query }) {
+    const searchString = isServer ? req.params.searchString : query.searchString
+    return { searchString }
   }
 
   componentDidMount() {
-    // this.props.store.
+    this.props.fetchSearch(this.props.searchString)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.searchString !== this.props.searchString) {
+      this.props.fetchSearch(this.props.searchString)
+    }
   }
 
   render() {
+    const title = this.props.searchString ? `Search: ${this.props.searchString}` : 'The Heights'
+    const searchResults = this.props.searchResults ? this.props.searchResults : []
     return (
       <div>
         <Head>
@@ -27,24 +44,19 @@ class Page extends React.Component {
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-          <title>The Heights</title>
+          <title>{title}</title>
 
           {/* Bootstrap stylesheet link */}
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous" />
         </Head>
         <Header />
+        <h3 className="offset-md-2">Search results for: {this.props.searchString}</h3>
         <div className="container" id="content">
-          <div className="row">
-            <div className="col-12 col-md-6 border-right border-left border-dark" id="center">
-              <MainContent />
+          {searchResults.map(article => (
+            <div className="col-6 offset-md-2" >
+              <SideImage article={article} withSummary={true} />
             </div>
-            <div className="col-12 col-md-3 order-md-first" id="left">
-              <LeftSideBar />
-            </div>
-            <div className="col-12 col-md-3 order-md-last float-left" id="right">
-              <RightSideBar />
-            </div>
-          </div>
+          ))}
         </div>
         <div id="footer">
           <Footer />
@@ -53,15 +65,7 @@ class Page extends React.Component {
           #content {
             padding: 0;
           }
-          #center {
-            padding: 0;          
-          }
-          #left {
-            padding: 0;
-          }
-          #right {
-            padding: 0.15em;        
-          }
+
           #footer {
             padding-top: 10px;
           }
@@ -75,4 +79,6 @@ class Page extends React.Component {
   }
 }
 
-export default connect()(Page)
+Page = withRedux(makeStore)(Page)
+
+export default Page

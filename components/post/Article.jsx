@@ -2,17 +2,17 @@ import { connect } from "react-redux"
 
 
 function getDate(dateString) {
-  var d = new Date(dateString);
+  var d = new Date(dateString)
   return `- ${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
 }
 
 @connect(store => {
   return {
-    title: store.singleArticle.title,
-    featured: store.singleArticle.featured,
-    author: store.singleArticle.author,
-    date: store.singleArticle.date,
-    content: store.singleArticle.content
+    title: store.post.title,
+    featured: store.post.featured,
+    author: store.post.author,
+    date: store.post.date,
+    content: store.post.content
   }
 })
 class Article extends React.Component {

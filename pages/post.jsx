@@ -1,34 +1,46 @@
 // import components
-import Header from '../components/header/Header';
-import Article from '../components/post/Article';
-import RelatedArticles from '../components/post/RelatedArticles';
-import Footer from "../components/footer/Footer";
+import Header from '../components/header/Header'
+import Article from '../components/post/Article'
+import LargeImage from '../components/thumbnail/LargeImage'
+import RelatedArticles from '../components/post/RelatedArticles'
+import Footer from "../components/footer/Footer"
 
 // import services & actions
-import makeStore from "../store";
-import { fetchPost } from "../actions";
+import { fetchPost, fetchCollection } from "../actions"
 
 // import 3rd party libraries
-import Head from 'next/head';
-import withRedux from "next-redux-wrapper"
+import Head from 'next/head'
 import { connect } from "react-redux"
 
 
 @connect(store => {
-  return {title: store.singleArticle.content.title}
-})
+  const topStories = store.collections.topStory
+  return {
+    title: store.post.content.title,
+    topStories,
+  }
+}, { fetchPost, fetchCollection })
 class Post extends React.Component {
   static async getInitialProps({ store, isServer, req, query }) {
-    const slug = isServer ? req.params.slug : query.slug;
-    return {slug};
+    const slug = isServer ? req.params.slug : query.slug
+    return {slug}
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchPost(this.props.slug));
+    this.props.fetchPost(this.props.slug)
+    this.props.fetchCollection(6)
+  }
+
+componentDidUpdate(prevProps) {
+    if (prevProps.slug !== this.props.slug) {
+      this.props.fetchPost(this.props.slug)
+    }
   }
 
   render() {
     const title = this.props.title ? this.props.title : "The Heights"
+    const relatedArticles = this.props.topStories ? this.props.topStories : []
+
     return (
       <div>
         <Head>
@@ -48,21 +60,34 @@ class Post extends React.Component {
                 <Article />
               </div>
               <div className="col-12 col-md-3">
-                <RelatedArticles />
+                <h2>Related Articles</h2>
+                {relatedArticles.map(article => (
+                  <div className="col-12" id="no-sum-large" key={article.slug}>
+                    <ul>
+                      <LargeImage article={article} withSummary={false} />
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
           <Footer />
         </div>
+        <style jsx>{`
+          ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          }
+        `}
+        </style>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
       </div>
-    );
+    )
   }
 }
 
 
-Post = withRedux(makeStore, state => state)(Post);
-
-export default Post
+export default connect()(Post)

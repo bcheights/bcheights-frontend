@@ -1,10 +1,11 @@
-import axios from "axios"
-import { api } from "../services"
-
 export function fetchPost(slug) {
-  return {type: "FETCH_ARTICLE_REQUEST", slug}
+  return {type: "FETCH_POST_REQUEST", slug}
 }
 
-export function fetchFeatured() {
-  return { type: 'FETCH_FEATURED_REQUEST' }
+export function fetchCollection(tagID) {
+  return {type: 'FETCH_COLLECTION_REQUEST', tagID}
+}
+
+export function fetchSearch(searchString) {
+  return {type: 'FETCH_SEARCH_REQUEST', searchString}
 }

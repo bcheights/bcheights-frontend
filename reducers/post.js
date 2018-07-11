@@ -4,12 +4,14 @@ export default function reducer(state={
     author: "",
     date: "",
     content: "",
+    category: "",
+    related: [],
     error: null,
     fetching: false,
     fetched: false,
   }, action) {
     switch(action.type) {
-      case "FETCH_ARTICLE_REQUEST": {
+      case "FETCH_POST_REQUEST": {
         return {
           ...state,
           title: "",
@@ -17,11 +19,13 @@ export default function reducer(state={
           author: "",
           date: "",
           content: "",
+          category: "",
+          related: [],
           fetching: true,
           fetched: false,
         };
       }
-      case "FETCH_ARTICLE_SUCCESS": {
+      case "FETCH_POST_SUCCESS": {
         return {
           ...state,
           title: action.payload.title,
@@ -33,7 +37,7 @@ export default function reducer(state={
           fetched: true,
         };
       }
-      case "FETCH_ARTICLE_FAILURE": {
+      case "FETCH_POST_FAILURE": {
         return {
           ...state,
           error: action.payload,
