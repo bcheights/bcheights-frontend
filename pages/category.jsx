@@ -4,9 +4,7 @@ import MastHeadCap from '../components/header/MastHeadCap'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Component } from "react"
-import withRedux from "next-redux-wrapper"
-import makeStore from "../store"
-
+import { connect } from 'react-redux'
 
 
 class Category extends Component {
@@ -58,4 +56,4 @@ class Category extends Component {
   }
 }
 
-export default withRedux(makeStore)(Category)
+export default connect()(Category)

@@ -6,12 +6,10 @@ import RelatedArticles from '../components/post/RelatedArticles'
 import Footer from "../components/footer/Footer"
 
 // import services & actions
-import makeStore from "../store"
 import { fetchPost, fetchCollection } from "../actions"
 
 // import 3rd party libraries
 import Head from 'next/head'
-import withRedux from "next-redux-wrapper"
 import { connect } from "react-redux"
 
 
@@ -33,7 +31,7 @@ class Post extends React.Component {
     this.props.fetchCollection(6)
   }
 
-  componentDidUpdate(prevProps) {
+componentDidUpdate(prevProps) {
     if (prevProps.slug !== this.props.slug) {
       this.props.fetchPost(this.props.slug)
     }
@@ -92,6 +90,4 @@ class Post extends React.Component {
 }
 
 
-Post = withRedux(makeStore, state => state)(Post)
-
-export default Post
+export default connect()(Post)

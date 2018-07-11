@@ -5,12 +5,9 @@ import MainContent from '../components/front-page/MainContent'
 import LeftSideBar from '../components/front-page/LeftSideBar'
 import RightSideBar from '../components/front-page/RightSideBar'
 
-// import services/store
-import makeStore from "../store"
-
 // import 3rd party libraries
 import Head from 'next/head'
-import withRedux from "next-redux-wrapper"
+import { connect } from "react-redux"
 
 
 class Page extends React.Component {
@@ -78,6 +75,4 @@ class Page extends React.Component {
   }
 }
 
-Page = withRedux(makeStore)(Page)
-
-export default Page
+export default connect()(Page)
