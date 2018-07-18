@@ -7,6 +7,7 @@
     "dev": "node server.js",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.js",
+    "full:deploy": "npm run login:docker && npm run dockerize && npm run deploy",
     "dockerize": "npm run build:docker && npm run tag:docker && npm run push:docker && npm run tag-latest:docker && npm run push-latest:docker",
     "deploy": "eb use BcheightsFront-env && eb deploy --label v$npm_package_version --verbose",
     "build:docker": "docker build -t $npm_package_config_docker_image:$npm_package_version -t $npm_package_config_docker_image:latest .",
