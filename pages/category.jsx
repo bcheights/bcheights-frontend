@@ -9,8 +9,7 @@ import { connect } from 'react-redux'
 
 class Category extends Component {
   static getInitialProps({ store, isServer, req, query }) {
-    const id = req.params.id ? req.params.id : query.id
-    
+    const id = req ? req.params.id : query.id
     // Capitalize the first letter of id 
     const category = id.charAt(0).toUpperCase() + id.slice(1)
     return {category}

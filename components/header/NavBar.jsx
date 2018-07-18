@@ -9,13 +9,14 @@ function getCategories() {
     { id: 'arts', title: 'Arts' },
     { id: 'opinions', title: 'Opinions' },
     { id: 'metro', title: 'Metro' },
-    { id: 'blog', title: 'Blog' }
+    { id: 'blog', title: 'Blog' },
+    { id: 'magazine', title: 'Magazine' }
   ]
 }
 
 const CategoryLink = ({ category }) => (
   <li className="nav-item">
-    <Link as={`/category/${category.id}`} href={`/category?title=${category.title}`}>
+    <Link as={`/category/${category.id}`} href={`/category?id=${category.title}`}>
       <a className="nav-link">{category.title}</a>
     </Link>
   </li> 
@@ -30,7 +31,6 @@ const NavBar = () => (
           {getCategories().map((category) => (
             <CategoryLink key={category.id} category={category} />
           ))}
-          <li className="nav-item"><Link href='/magazine'><a className="nav-link">Magazine</a></Link></li>
           <li className="nav-item"><Link href='/centennial'><a className="nav-link">Centennial</a></Link></li>
         </div>
       </div>
