@@ -4,7 +4,7 @@ import App, { Container } from "next/app";
 import withRedux from "next-redux-wrapper";
 import makeStore from "../store";
 
-export default withRedux(makeStore, {debug: true})(class BCHeights extends App {
+export default withRedux(makeStore)(class BCHeights extends App {
 
     static async getInitialProps({Component, ctx}) {
         return {

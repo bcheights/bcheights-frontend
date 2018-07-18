@@ -5,7 +5,6 @@ export default function reducer(state={
     date: "",
     content: "",
     category: "",
-    related: [],
     error: null,
     fetching: false,
     fetched: false,
@@ -33,6 +32,7 @@ export default function reducer(state={
           author: action.payload.author,
           date: action.payload.date,
           content: action.payload.content,
+          category: action.payload.category,
           fetching: false,
           fetched: true,
         };

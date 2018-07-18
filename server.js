@@ -22,9 +22,9 @@ app.prepare()
       app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/magazine/:id', (req, res) => {
+    server.get('/magazine/:slug', (req, res) => {
       const actualPage = '/magazine'
-      const queryParams = { id: req.params.id }
+      const queryParams = { slug: req.params.slug }
       app.render(req, res, actualPage, queryParams)
     })
 

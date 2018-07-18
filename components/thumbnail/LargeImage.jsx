@@ -9,7 +9,7 @@ function getDate(dateString) {
 
 class LargeImage extends React.Component {
   render() {
-    const { title, author, date, featured, slug } = this.props.article
+    const { title, date, featured, slug, category } = this.props.article
     let d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
@@ -25,7 +25,7 @@ class LargeImage extends React.Component {
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
-        <p id="date">Section | {getDate(date)}</p>
+        <p id="date">{category} | {getDate(date)}</p>
         <style jsx>{`
           div {
             padding: 0;
