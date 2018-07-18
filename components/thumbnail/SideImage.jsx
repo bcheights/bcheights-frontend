@@ -13,10 +13,6 @@ class SideImage extends React.Component {
     var d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
-
-
-    console.log(excerpt)
-
     return (
       <div className="container" id="content">
         
