@@ -1,6 +1,6 @@
 {
   "name": "bcheights-frontend",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "config": {
     "docker": {
-      "repo": "126572878432.dkr.ecr.us-east-2.amazonaws.com/bcheights-front",
+      "repo": "126572878432.dkr.ecr.us-east-2.amazonaws.com",
       "image": "bcheights-front"
     }
   },
