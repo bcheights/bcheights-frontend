@@ -22,12 +22,6 @@ app.prepare()
       app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/magazine', (req, res) => {
-      const actualPage = '/category'
-      const queryParams = { id: 'magazine' }
-      app.render(req, res, actualPage, queryParams)
-    })
-
     server.get('/magazine/:slug', (req, res) => {
       const actualPage = '/magazine'
       const queryParams = { slug: req.params.slug }
