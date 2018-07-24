@@ -52,6 +52,23 @@ function getCollectionType(tagID) {
   }
 }
 
+function* loadCategory({ categoryId }) {
+  try {
+    const data = yield api.fetchCategory(categoryId)
+    const collection = yield parsePostsToArray(data)
+
+    yield put({
+      type: 'FETCH_CATEGORY_SUCCESS',
+      payload: collection
+    })
+  } catch(error) {
+    yield put({
+      type: 'FETCH_CATEGORY_FAILURE',
+      payload: error
+    })
+  }
+}
+
 function* loadSearch({ searchString }) {
   try {
     const data = yield api.fetchSearch(searchString)
@@ -81,6 +98,7 @@ function* parsePostsToArray(posts) {
 
 // Watch for FETCH_FEATURED_REQUEST action and call loadFeatured
 export default function* rootSaga() {
+  yield takeEvery('FETCH_CATEGORY_REQUEST', loadCategory)
   yield takeEvery('FETCH_COLLECTION_REQUEST', loadCollection)
   yield takeEvery('FETCH_POST_REQUEST', loadPost)
   yield takeEvery('FETCH_SEARCH_REQUEST', loadSearch)

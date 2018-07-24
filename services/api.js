@@ -21,6 +21,7 @@ export const fetchPost = slug => callApi(`/posts?slug=${slug}`)
 export const fetchAuthor = id => callApi(`/users/${id}`)
 export const fetchFeaturedImage = id => callApi(`/media/${id}`)
 export const fetchCollection = id => callApi(`/posts?tags=${id}`)
+export const fetchCategory = id => callApi(`/posts?categories=${id}`)
 export const fetchSearch = search => callApi(`/posts?search=${search}`)
 
 // Returns post info from slug id

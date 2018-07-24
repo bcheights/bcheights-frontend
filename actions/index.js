@@ -9,3 +9,7 @@ export function fetchCollection(tagID) {
 export function fetchSearch(searchString) {
   return {type: 'FETCH_SEARCH_REQUEST', searchString}
 }
+
+export function fetchCategory(categoryId) {
+  return {type: 'FETCH_CATEGORY_REQUEST', categoryId}
+}
