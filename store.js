@@ -6,7 +6,8 @@ import reducer from "./reducers"
 import rootSaga from "./saga"
 
 const saga = createSagaMiddleware()
-const middleware = applyMiddleware(logger, saga)
+const middleware = process.env.NODE_ENV === 'production' ? 
+    applyMiddleware(saga) : applyMiddleware(logger, saga);
 
 let store = null
 
