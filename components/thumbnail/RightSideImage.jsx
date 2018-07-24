@@ -7,7 +7,7 @@ function getDate(dateString) {
   return `${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
 }
 
-class SideImage extends React.Component {
+class RightSideImage extends React.Component {
   render() {
     const { title, author, date, featured, slug } = this.props.article
     var d = new Date(date)
@@ -68,4 +68,4 @@ class SideImage extends React.Component {
   }
 }
 
-export default SideImage
+export default RightSideImage

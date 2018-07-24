@@ -1,5 +1,5 @@
 import LargeImage from '../thumbnail/LargeImage'
-import SideImage from '../thumbnail/SideImage'
+import LeftSideImage from '../thumbnail/LeftSideImage'
 import NoImage from '../thumbnail/NoImage'
 
 import { connect } from 'react-redux'
@@ -23,7 +23,7 @@ class RightSideBar extends React.Component {
           {topStories.map(article => (
             <div className="col-12" id="no-sum-large" key={article.slug}>
               <ul>
-                <SideImage article={article} withSummary={false} />
+                <LeftSideImage article={article} withSummary={false} />
               </ul>
             </div>
           ))}

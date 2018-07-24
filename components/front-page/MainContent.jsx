@@ -1,6 +1,6 @@
 // import components
 import LargeImage from '../thumbnail/LargeImage'
-import SideImage from '../thumbnail/SideImage'
+import RightSideImage from '../thumbnail/RightSideImage'
 
 // import actions & 3rd party libraries
 import { fetchCollection } from "../../actions"
@@ -63,7 +63,7 @@ class MainContent extends React.Component {
           {featured.map(article => (
             <div className="row"  key={article.slug}>
               <ul>
-                <SideImage article={article} withSummary={true} />
+                <RightSideImage article={article} withSummary={true} />
               </ul>
             </div>
           ))}   
