@@ -1,6 +1,6 @@
 {
   "name": "bcheights-frontend",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -39,6 +39,7 @@
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6"
   }
 }
