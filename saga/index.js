@@ -43,12 +43,8 @@ function* loadCollection({ tagID }) {
 
 function getCollectionType(tagID) {
   switch(tagID) {
-    case 3: {
-      return 'FEATURED'
-    }
-    case 6: {
-      return 'TOP_STORY'
-    }
+    case 3: { return 'FEATURED' }
+    case 6: { return 'TOP_STORY' }
   }
 }
 

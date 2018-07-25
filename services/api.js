@@ -46,7 +46,7 @@ export const parsePostData = async post => {
     content  : changeRoute(post.content.rendered),
     excerpt  : changeRoute(post.excerpt.rendered),
     slug     : post.slug,
-    category : post.category
+    category : getCategory(post.categories[0])
   }
 }
 
@@ -54,5 +54,20 @@ export const parsePostData = async post => {
 export const changeRoute = string => {
   const endpoint = "http://18.219.114.43"
 
-  return string.replace(endpoint, "http://localhost:3000")
+  return string.replace(endpoint, "http://localhost:3000/post")
+}
+
+export const getCategory = category => {
+  switch(category) {
+    case 'Sports': { return 8 }
+    case 8: { return 'Sports' }
+    case 'Opinions': { return 9 }
+    case 9: { return 'Opinions' }
+    case 'News': { return 7 }
+    case 7: { return 'News' }
+    case 'Arts': { return 11 }
+    case 11: { return 'Arts' }
+    case 'Metro': { return 10 }
+    case 10: { return 'Metro' }
+  }
 }
