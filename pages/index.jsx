@@ -1,22 +1,25 @@
 // import components
 import Header from '../components/header/Header'
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer'
 import MainContent from '../components/front-page/MainContent'
 import LeftSideBar from '../components/front-page/LeftSideBar'
 import RightSideBar from '../components/front-page/RightSideBar'
+
+import { fetchCollection } from '../actions'
 
 // import 3rd party libraries
 import Head from 'next/head'
 import { connect } from "react-redux"
 
-
+@connect(null, { fetchCollection })
 class Page extends React.Component {
   static getInitialProps({ store, isServer }) {
     return { isServer }
   }
 
   componentDidMount() {
-    // this.props.store.
+    this.props.fetchCollection(3)
+    this.props.fetchCollection(6)
   }
 
   render() {
@@ -75,4 +78,4 @@ class Page extends React.Component {
   }
 }
 
-export default connect()(Page)
+export default Page

@@ -3,7 +3,7 @@ import Header from '../components/header/Header'
 import MagazineArticle from '../components/post/MagazineArticle'
 import LargeImage from '../components/thumbnail/LargeImage'
 import RelatedArticles from '../components/post/RelatedArticles'
-import Footer from "../components/footer/Footer"
+import Footer from "../components/footer"
 
 // import services & actions
 import { fetchPost, fetchCollection } from "../actions"

@@ -1,6 +1,6 @@
 // import components
 import Header from '../components/header/Header'
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer'
 import LargeImage from '../components/thumbnail/LargeImage'
 import RightSideImage from '../components/thumbnail/RightSideImage'
 

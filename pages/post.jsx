@@ -3,7 +3,7 @@ import Header from '../components/header/Header'
 import Article from '../components/post/Article'
 import LargeImage from '../components/thumbnail/LargeImage'
 import RelatedArticles from '../components/post/RelatedArticles'
-import Footer from "../components/footer/Footer"
+import Footer from "../components/footer"
 
 // import services & actions
 import { fetchPost, fetchCollection } from "../actions"
@@ -31,7 +31,7 @@ class Post extends React.Component {
     this.props.fetchCollection(6)
   }
 
-componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.slug !== this.props.slug) {
       this.props.fetchPost(this.props.slug)
     }
