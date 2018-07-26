@@ -1,18 +1,35 @@
 import Header from '../components/header/Header'
-import MastHeadCap from '../components/header/MastHeadCap'
+import MainView from '../components/category'
+import CategoryArchive from '../components/category/Archive'
+import Footer from '../components/footer'
 
-import Link from 'next/link'
+import { fetchCategory } from '../actions'
+import { getCategory } from '../services/api'
+
 import Head from 'next/head'
 import { Component } from "react"
 import { connect } from 'react-redux'
 
 
+@connect(null, { fetchCategory })
 class Category extends Component {
   static getInitialProps({ store, isServer, req, query }) {
     const id = req ? req.params.id : query.id
     // Capitalize the first letter of id 
     const category = id.charAt(0).toUpperCase() + id.slice(1)
     return {category}
+  }
+
+  componentDidMount() {
+    const id = getCategory(this.props.category)
+    this.props.fetchCategory(id)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.category !== this.props.category) {
+      const id = getCategory(this.props.category)
+      this.props.fetchCategory(id)
+    }
   }
 
   render() {
@@ -30,16 +47,35 @@ class Category extends Component {
           <title>{`${category} - The Heights`}</title>
         </Head>
         <Header />
-        <div className='content'>
-          <h1>{category}</h1>
-          <p>ITS CHANGeED</p>
+        <div id='content'>
+          <div className="row" id="outer">
+            <div className="col-12 col-md-8 offset-md-1 border-right" id="main">
+              <h1>{category}</h1>
+              <div className="row border-bottom">
+                <MainView />
+              </div>
+              <h2>Paginated Archive</h2>
+              <CategoryArchive />
+            </div>
+            <div className="col-12 col-md-3">
+              <h2>Related Articles</h2>
+              <img id="ad" src="../static/placeholder.png"></img>
+              <img id="ad" src="../static/placeholder.png"></img>
+              <img id="ad" src="../static/placeholder.png"></img>
+            </div>
+          </div>
+        </div>
+        <div id="footer">
+          <Footer />
         </div>
         <style jsx>{`
-          .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+          #ad {
+            margin: 10px auto;
+            width: 200px;
+            height: 450px;
+          }
+          #footer {
+            padding-top: 10px;
           }
         `}
         </style>
