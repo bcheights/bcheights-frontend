@@ -28,6 +28,7 @@ function* loadCollection({ tagID }) {
     })
     const data = yield api.fetchCollection(tagID)
     const collection = yield parsePostsToArray(data)
+    // const collection = yield parsePostsToArray(data, 'collection', tagID)
     // Once finished --> Send success message
     yield put({
       type: `FETCH_${actionType}_SUCCESS`, 
@@ -41,10 +42,10 @@ function* loadCollection({ tagID }) {
   }
 }
 
-function getCollectionType(tagID) {
+function getCollectionType(tagID, forSection=false) {
   switch(tagID) {
-    case 3: { return 'FEATURED' }
-    case 6: { return 'TOP_STORY' }
+    case 3: { return forSection ? 'Featured' : 'FEATURED' }
+    case 6: { return forSection ? 'Top Story' : 'TOP_STORY' }
   }
 }
 
@@ -52,6 +53,7 @@ function* loadCategory({ categoryId }) {
   try {
     const data = yield api.fetchCategory(categoryId)
     const collection = yield parsePostsToArray(data)
+    // const collection = yield parsePostsToArray(data, 'category', categoryId)
 
     yield put({
       type: 'FETCH_CATEGORY_SUCCESS',
@@ -81,11 +83,19 @@ function* loadSearch({ searchString }) {
   }
 }
 
-function* parsePostsToArray(posts) {
+function* parsePostsToArray(posts, type='', id=0) {
   let collection = []
   let parsedData = {}
+  let section = ''
+
+  // if (type === 'collection') {
+  //   section = getCollectionType(id, true)
+  // } else if (type === 'category') {
+  //   section = api.getCategory(id)
+  // }
 
   for (let i=0; i < posts.length; i++) {
+    // parsedData = yield api.parseEmbedForArray(posts[i], section)
     parsedData = yield api.parsePostData(posts[i])
     collection.push(parsedData)
   }
