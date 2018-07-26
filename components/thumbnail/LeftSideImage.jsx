@@ -9,56 +9,65 @@ function getDate(dateString) {
 
 class LeftSideImage extends React.Component {
   render() {
-    const { title, author, date, featured, slug } = this.props.article
+    const { title, category, date, featured, slug } = this.props.article
     var d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
     return (
       <div className="container" id="content">
-        <div className="" id="side-image">
-          <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
-              href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-            <img className="float-left" src={featured}></img>
-          </Link>
+        <div className="row justify-content-center">
+          <div className="col-3" id="side-image">
+            <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+                href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
+              <img className="" src={featured}></img>
+            </Link>
+          </div>
+          <div className="col-8" id="other">
+            <div id="title">
+              <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+                  href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
+                <a>{title}</a>
+              </Link>
+            </div>  
+            <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
+            <p id="date">{category} | {getDate(date)}</p>
+          </div>
         </div>
-        <div id="title">
-          <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
-              href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-            <a>{title}</a>
-          </Link>
-        </div>  
-        <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
-        <p id="date">Section | {getDate(date)}</p>
         <style jsx>{`
           #content {
             padding: 0;
             margin: 1em auto;
+            width: 100%;
           }
           #side-image {
             margin: 0;
             padding: 0;
           }
+          #other {
+          }
           #title {
-            margin-left: 10px;
           }
           img { 
-            width: 100px;
-            height: 100px;
+            width: ${this.props.isHeadline ? 240 : 100}px;
+            height: ${this.props.isHeadline ? 160 : 80}px;
+            ${this.props.border ? 
+              'border-style: solid;' +
+              'border-width: 1px;' : ''};
             max-width: 99%;
           }
 
           a {
             text-decoration: none;
             color: black;
-            font-size: 12px;
+            font-size: 0.95rem;
             font-weight: bold;
           }
 
           #text {
-            font-size: 0.75em;
+            font-size: 0.8rem;
           }
           #date {
-            font-size: 13px;
+            font-size: 0.85rem;
           }
         `}
         </style>
