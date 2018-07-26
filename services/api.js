@@ -50,6 +50,24 @@ export const parsePostData = async post => {
   }
 }
 
+export const parseEmbedForArray = async (post, section) => {
+  // GET Article Data & Featured Image & Author
+  const mediaData  = await fetchFeaturedImage(post.featured_media)  
+  const authorData = await fetchAuthor(post.author)
+
+  console.log(section)
+
+  return {
+    title    : post.title.rendered,
+    featured : mediaData.guid.rendered,
+    author   : authorData.name,
+    date     : post.date,
+    excerpt  : changeRoute(post.excerpt.rendered),
+    slug     : post.slug,
+    section  : section,
+  }
+}
+
 // Replace WP Instance endpoint with Front-End Route
 export const changeRoute = string => {
   const endpoint = "http://18.219.114.43"
