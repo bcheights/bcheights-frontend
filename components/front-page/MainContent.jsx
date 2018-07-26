@@ -22,12 +22,6 @@ class MainContent extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    // Fetch Featured Collection
-    this.props.fetchCollection(3)
-    this.props.fetchCollection(6)
-  }
-
   render() {
     const featured = this.props.featured ? this.props.featured.slice(1) : []
     const headline = this.props.featured ? this.props.featured.slice(0,1) : []

@@ -1,15 +1,15 @@
 import LargeImage from '../thumbnail/LargeImage'
 import LeftSideImage from '../thumbnail/LeftSideImage'
+import RightSideImage from '../thumbnail/RightSideImage'
 import NoImage from '../thumbnail/NoImage'
 
 import { connect } from 'react-redux'
 
+
 @connect(store => {
-  const topStories = store.collections.topStory
-  const featured = store.collections.featured
   return {
-    featured,
-    topStories
+    featured: store.collections.featured,
+    topStories: store.collections.topStory
   }
 })
 class RightSideBar extends React.Component {
