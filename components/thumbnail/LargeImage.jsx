@@ -38,21 +38,24 @@ class LargeImage extends React.Component {
             justify-content: center;
             width: ${this.props.isHeadline ? 600 : 300}px;
             height: ${this.props.isHeadline ? 300 : 150}px;
+            ${this.props.border ? 
+              'border-style: solid;' +
+              'border-width: 1px;' : ''};
             max-width: 99%;
           }
 
           a {
             text-decoration: none;
             color: black;
-            font-size: 1.25em;
+            font-size: 1.15rem;
             font-weight: bold;
           }
 
           #text {
-            font-size: 0.75em;
+            font-size: 0.8rem;
           }
           #date {
-            font-size: 13px;
+            font-size: 0.85rem;
           }
         `}
         </style>

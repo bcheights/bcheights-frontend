@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Head from 'next/head'
 
 import Header from '../components/header/Header'
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer'
 
 
 class Centennial extends React.Component {

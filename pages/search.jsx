@@ -1,8 +1,8 @@
 // import components
 import Header from '../components/header/Header'
-import Footer from '../components/footer/Footer'
+import Footer from '../components/footer'
 import LargeImage from '../components/thumbnail/LargeImage'
-import SideImage from '../components/thumbnail/SideImage'
+import RightSideImage from '../components/thumbnail/RightSideImage'
 
 // import services/store
 import makeStore from "../store"
@@ -10,7 +10,6 @@ import { fetchSearch } from '../actions'
 
 // import 3rd party libraries
 import Head from 'next/head'
-import withRedux from "next-redux-wrapper"
 import { connect } from 'react-redux'
 
 @connect(store => {
@@ -54,7 +53,7 @@ class Page extends React.Component {
         <div className="container" id="content">
           {searchResults.map(article => (
             <div className="col-6 offset-md-2" >
-              <SideImage article={article} withSummary={true} />
+              <RightSideImage article={article} withSummary={true} />
             </div>
           ))}
         </div>
@@ -78,7 +77,5 @@ class Page extends React.Component {
     )
   }
 }
-
-Page = withRedux(makeStore)(Page)
 
 export default Page

@@ -7,29 +7,26 @@ function getDate(dateString) {
   return `${d.toLocaleDateString('en-us', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()}`
 }
 
-class SideImage extends React.Component {
+class RightSideImage extends React.Component {
   render() {
-    const { title, author, date, featured, slug } = this.props.article
+    const { title, category, date, featured, slug } = this.props.article
     var d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
     return (
       <div className="container" id="content">
-        
-        <div className="">
-          <div className="" id="side-image">
-            <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
-                href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-              <img className="img-responsive float-right" src={featured}></img>
-            </Link>
-          </div>  
-          <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+        <div className="" id="side-image">
+        <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
               href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
-            <a id="title">{title}</a>
+            <img className="img-responsive float-right" src={featured}></img>
           </Link>
-          <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
-          <p id="date">Section | {getDate(date)}</p>
-        </div>
+        </div>  
+        <Link as={`/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`}
+            href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}>
+          <a id="title">{title}</a>
+        </Link>
+        <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
+        <p id="date">{category} | {getDate(date)}</p>
         <style jsx>{`
           #content {
             padding: 0;
@@ -43,23 +40,23 @@ class SideImage extends React.Component {
             margin-right: 7px;
           }
           img { 
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 120px;
             max-width: 99%;
           }
 
           a {
             text-decoration: none;
             color: black;
-            font-size: 12px;
+            font-size: 1.15rem;
             font-weight: bold;
           }
 
           #text {
-            font-size: 0.75em;
+            font-size: 0.8rem;
           }
           #date {
-            font-size: 13px;
+            font-size: 0.85rem;
           }
         `}
         </style>
@@ -68,4 +65,4 @@ class SideImage extends React.Component {
   }
 }
 
-export default SideImage
+export default RightSideImage

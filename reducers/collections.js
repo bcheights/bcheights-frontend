@@ -1,4 +1,5 @@
 export default function reducer(state={
+  category: [],
   featured: [],
   topStory: [],
   search: [],
@@ -83,9 +84,33 @@ export default function reducer(state={
         fetched: true
       }
     }
+    case "FETCH_CATEGORY_REQUEST": {
+      return {
+        ...state,
+        category: [],
+        fetching: true,
+        fetched: false
+      }
+    }
+    case "FETCH_CATEGORY_SUCCESS": {
+      return {
+        ...state,
+        category: action.payload,
+        fetching: false,
+        fetched: true
+      }
+    }
+    case "FETCH_CATEGORY_FAILURE": {
+      return {
+        ...state,
+        category: [],
+        error: action.payload,
+        fetching: false,
+        fetched: true,
+      }
+    }
     default:
       return state
   }
-  return state
 }
 

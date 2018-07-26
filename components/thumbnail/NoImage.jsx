@@ -9,7 +9,7 @@ function getDate(dateString) {
 
 class NoImage extends React.Component {
   render() {
-    const { title, author, date, featured, slug } = this.props.article
+    const { title, category, date, slug } = this.props.article
     var d = new Date(date)
 
     const excerpt = this.props.withSummary ? this.props.article.excerpt : null
@@ -21,7 +21,7 @@ class NoImage extends React.Component {
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{__html: excerpt}} id="text" />
-        <p id="date">Section | {getDate(date)}</p>
+        <p id="date">{category} | {getDate(date)}</p>
         <style jsx>{`
           div {
             padding: 0;
@@ -38,15 +38,15 @@ class NoImage extends React.Component {
           a {
             text-decoration: none;
             color: black;
-            
+            font-size: 1rem;
             font-weight: bold;
           }
 
           #text {
-            font-size: 13px;
+            font-size: 0.8rem;
           }
           #date {
-            font-size: 13px;
+            font-size: 0.85rem;
           }
         `}
         </style>
