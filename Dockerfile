@@ -12,7 +12,7 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src
 
-RUN npm run full:deploy
+RUN npm run build
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
