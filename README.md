@@ -4,14 +4,16 @@
 
 ### Pre-Requisites:
 
-Need NPM & Node installed. If you don't have it installed go here: https://nodejs.org/en/ (Install the LTS version). NPM is bundled with the Node installation.
+1. NPM & Node installed 
+   - If you don't have it installed go here: https://nodejs.org/en/ (Install the LTS version). NPM is bundled with the Node installation.
+2. Python & Pip
+   - Pip is bundled with most Python installations
 
 ### Setup Virtual Environment
 
 If you don't have virtualenv installed then run `pip install virtualenv` in the terminal. 
 
 Note: Run the above command with `sudo` if you want installed globally.
-Note: Must have `Python` installed with `Pip`
 
 1. Navigate to directory where you want the project to be
 2. Run `virtualenv {name of project folder}`
