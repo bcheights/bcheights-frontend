@@ -1,4 +1,4 @@
-import { combineReducers } from "redux"
+import { combineReducers } from "redux";
 
 import post from "./post";
 import collections from "./collections";

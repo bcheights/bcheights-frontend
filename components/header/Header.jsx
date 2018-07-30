@@ -1,16 +1,16 @@
-import MastHeadCap from './MastHeadCap'
-import NavBar from './NavBar'
+import MastHeadCap from "./MastHeadCap";
+import NavBar from "./NavBar";
 
-import Link from 'next/link'
-import Head from 'next/head'
-
-
+import Link from "next/link";
+import Head from "next/head";
 
 const Header = () => (
-  <div className='header'>
+  <div className="header">
     <MastHeadCap />
-    <div id='masthead'>
-      <Link href='/'><img src='/static/heights-header.svg'></img></Link>
+    <div id="masthead">
+      <Link href="/">
+        <img src="/static/heights-header.svg" />
+      </Link>
     </div>
     <div className="container-fluid">
       <div className="row no-gutter">
@@ -19,7 +19,8 @@ const Header = () => (
         </div>
       </div>
     </div>
-    <style jsx>{`
+    <style jsx>
+      {`
         #masthead {
           margin: auto;
           text-align: center;
@@ -28,10 +29,9 @@ const Header = () => (
         #masthead img {
           width: 300px;
         }
-        
-    `}
+      `}
     </style>
   </div>
-)
+);
 
-export default Header
+export default Header;

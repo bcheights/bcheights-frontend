@@ -1,7 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Head from 'next/head'
-
+import React from "react";
+import { connect } from "react-redux";
+import Head from "next/head";
 
 @connect(store => {
   return {
@@ -10,17 +9,17 @@ import Head from 'next/head'
     author: store.post.author,
     date: store.post.date,
     content: store.post.content
-  }
+  };
 })
 class MagazineArticle extends React.Component {
   render() {
-    const { title, author, date, featured, content } = this.props
+    const { title, author, date, featured, content } = this.props;
     return (
       <div>
         <img src={featured} />
       </div>
-    )
+    );
   }
 }
 
-export default connect()(MagazineArticle)
+export default connect()(MagazineArticle);

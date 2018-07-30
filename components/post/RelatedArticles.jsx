@@ -1,20 +1,22 @@
-import LargeImage from '../thumbnail/LargeImage'
-import NoImage from '../thumbnail/NoImage'
+import LargeImage from "../thumbnail/LargeImage";
+import NoImage from "../thumbnail/NoImage";
 
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
 @connect(store => {
-  const topStories = store.collections.topStory
-  const featured = store.collections.featured
+  const topStories = store.collections.topStory;
+  const featured = store.collections.featured;
   return {
     featured,
     topStories
-  }
+  };
 })
 class RelatedArticles extends React.Component {
   render() {
-    const topStories = this.props.topStories ? this.props.topStories.slice(0,2) : []
-    const featured = this.props.featured ? this.props.featured : []
+    const topStories = this.props.topStories
+      ? this.props.topStories.slice(0, 2)
+      : [];
+    const featured = this.props.featured ? this.props.featured : [];
 
     return (
       <div id="container">
@@ -36,23 +38,24 @@ class RelatedArticles extends React.Component {
             </div>
           ))}
         </div>
-        <style jsx>{`
-          ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-          }
-          #top-story {
+        <style jsx>
+          {`
+            ul {
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+            }
+            #top-story {
               padding-bottom: 5px;
               margin-bottom: 10px;
-          }
-          #no-sum-large.ul {
-            margin: 10px;
-          }
-        `}
+            }
+            #no-sum-large.ul {
+              margin: 10px;
+            }
+          `}
         </style>
       </div>
-    )
+    );
   }
 }
-export default RelatedArticles
+export default RelatedArticles;
