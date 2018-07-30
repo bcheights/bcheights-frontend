@@ -1,12 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
-function getDate(dateString) {
-  var d = new Date(dateString);
-  return `${d.toLocaleDateString("en-us", {
-    month: "long"
-  })} ${d.getDate()}, ${d.getFullYear()}`;
-}
+import { utils } from "../../services";
 
 class NoImage extends React.Component {
   render() {
@@ -26,7 +20,7 @@ class NoImage extends React.Component {
         </Link>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} id="text" />
         <p id="date">
-          {category} | {getDate(date)}
+          {category} | {utils.getDate(date)}
         </p>
         <style jsx>
           {`

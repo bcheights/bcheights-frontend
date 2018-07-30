@@ -1,11 +1,5 @@
 import { connect } from "react-redux";
-
-function getDate(dateString) {
-  var d = new Date(dateString);
-  return `- ${d.toLocaleDateString("en-us", {
-    month: "long"
-  })} ${d.getDate()}, ${d.getFullYear()}`;
-}
+import { utils } from "../../services";
 
 @connect(store => {
   return {
@@ -29,7 +23,7 @@ class Article extends React.Component {
           <h2>{title}</h2>
           <div id="details">
             <p>{author}</p>
-            <p>{getDate(date)}</p>
+            <p>{utils.getDate(date)}</p>
           </div>
           <img src={featured} className="img-responsive" />
         </div>
