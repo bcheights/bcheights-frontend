@@ -71,8 +71,12 @@ export const parseEmbedForArray = async (post, section) => {
 // Replace WP Instance endpoint with Front-End Route
 export const changeRoute = string => {
   const endpoint = "http://18.219.114.43"
-
-  return string.replace(endpoint, "http://localhost:3000/post")
+  if (process.env.NODE_ENV === 'production') {
+    return string.replace(endpoint, 'http://bcheights.us-east-2.elasticbeanstalk.com/post')
+  }
+  else {
+    return string.replace(endpoint, "http://localhost:3000/post")
+  }
 }
 
 export const getCategory = category => {
