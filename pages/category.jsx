@@ -4,7 +4,7 @@ import CategoryArchive from "../components/category/Archive";
 import Footer from "../components/footer";
 
 import { fetchCategory } from "../actions";
-import { getCategory } from "../services/api";
+import { api } from "../services";
 
 import Head from "next/head";
 import { Component } from "react";
@@ -23,13 +23,13 @@ class Category extends Component {
   }
 
   componentDidMount() {
-    const id = getCategory(this.props.category);
+    const id = api.getCategory(this.props.category);
     this.props.fetchCategory(id);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.category !== this.props.category) {
-      const id = getCategory(this.props.category);
+      const id = api.getCategory(this.props.category);
       this.props.fetchCategory(id);
     }
   }
@@ -68,7 +68,6 @@ class Category extends Component {
               <CategoryArchive />
             </div>
             <div className="col-12 col-md-3">
-              <h2>Related Articles</h2>
               <img id="ad" src="../static/placeholder.png" />
               <img id="ad" src="../static/placeholder.png" />
               <img id="ad" src="../static/placeholder.png" />
@@ -82,7 +81,7 @@ class Category extends Component {
           {`
             #ad {
               margin: 10px auto;
-              width: 200px;
+              width: 250px;
               height: 450px;
             }
             #footer {
