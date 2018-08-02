@@ -7,7 +7,11 @@ class LargeImage extends React.Component {
     const { title, date, featured, slug, category } = this.props.article;
     let d = new Date(date);
 
-    const excerpt = this.props.withSummary ? this.props.article.excerpt : null;
+    const excerpt = this.props.withSummary
+      ? utils.shortenExcerpt(
+          this.props.article ? this.props.article.excerpt : null
+        )
+      : null;
 
     return (
       <div className="container">
@@ -23,7 +27,7 @@ class LargeImage extends React.Component {
             1}/${d.getDate()}/${slug}`}
           href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}
         >
-          <a>{title}</a>
+          <a id="title">{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} id="text" />
         <p id="date">
@@ -35,25 +39,27 @@ class LargeImage extends React.Component {
               padding: 0;
               margin: 0;
             }
-
             img {
               margin: auto;
               display: flex;
               justify-content: center;
               max-width: 99%;
             }
-
+            #title {
+              font-family: "Lato";
+            }
             a {
               text-decoration: none;
               color: black;
               font-size: 1.15rem;
               font-weight: bold;
             }
-
             #text {
               font-size: 0.8rem;
+              font-family: "Lato";
             }
             #date {
+              font-family: "Lato";
               font-size: 0.85rem;
             }
           `}
