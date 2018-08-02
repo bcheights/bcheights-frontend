@@ -13,7 +13,18 @@ class RightSideImage extends React.Component {
     const { title, category, date, featured, slug } = this.props.article;
     var d = new Date(date);
 
-    const excerpt = this.props.withSummary ? this.props.article.excerpt : null;
+    let split_excerpt = this.props.article.excerpt.split('</p>')
+    let space_split_excerpt = split_excerpt[0].split(' ')
+    let final_excerpt = ''
+    let i = 0
+    while (final_excerpt.length < 103) {
+      final_excerpt += space_split_excerpt[i] + ' '
+      i+=1
+    }
+    final_excerpt += ' &hellip; </p>' + split_excerpt.splice(1,split_excerpt.length).join('</p>')
+
+    const excerpt = this.props.withSummary ? final_excerpt : null
+    //const excerpt = this.props.withSummary ? this.props.article.excerpt : null;
     return (
       <div className="container" id="content">
         <div className="" id="side-image">
