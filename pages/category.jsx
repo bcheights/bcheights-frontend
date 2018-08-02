@@ -53,6 +53,10 @@ class Category extends Component {
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossOrigin="anonymous"
           />
+          <link
+            href="https://fonts.googleapis.com/css?family=Lato"
+            rel="stylesheet"
+          />
 
           <title>{`${category} - The Heights`}</title>
         </Head>

@@ -28,6 +28,10 @@ class Centennial extends React.Component {
             href="https://fonts.googleapis.com/css?family=Roboto"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css?family=Lato"
+            rel="stylesheet"
+          />
         </Head>
         <div>
           <Header />
