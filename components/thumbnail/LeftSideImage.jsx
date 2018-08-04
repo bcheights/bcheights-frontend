@@ -76,8 +76,10 @@ class LeftSideImage extends React.Component {
         <style jsx>
           {`
             img {
-              width: ${this.props.isHeadline ? 240 : 13}rem;
-              height: ${this.props.isHeadline ? 160 : 6}rem;
+              display: ${this.props.isCategory ? "flex" : ""};
+              float: ${this.props.isCategory ? "right" : ""};
+              width: ${this.props.isHeadline ? 17 : 13}rem;
+              height: ${this.props.isHeadline ? 8 : 6}rem;
               border-style: ${this.props.border ? "solid" : ""};
               border-width: ${this.props.border ? 1 : 0}px;
             }

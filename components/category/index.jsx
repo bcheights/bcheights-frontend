@@ -33,7 +33,7 @@ export default class extends React.Component {
                 <ul>
                   <LargeImage
                     article={article}
-                    withSummary={false}
+                    withSummary={true}
                     border={true}
                   />
                 </ul>
@@ -48,7 +48,7 @@ export default class extends React.Component {
                 <ul>
                   <LargeImage
                     article={article}
-                    withSummary={false}
+                    withSummary={true}
                     border={true}
                   />
                 </ul>

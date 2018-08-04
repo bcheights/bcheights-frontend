@@ -43,6 +43,8 @@ class LargeImage extends React.Component {
             }
             #title {
               font-family: "Lato";
+              display: flex;
+              justify-content: center;
             }
             a {
               text-decoration: none;
@@ -65,7 +67,7 @@ class LargeImage extends React.Component {
               font-size: ${this.props.isHeadline ? 1.15 : 0.85}rem;
             }
             img {
-              width: ${this.props.isHeadline ? 45 : 22}rem;
+              width: ${this.props.isHeadline ? 45 : 16}rem;
               height: ${this.props.isHeadline ? 18 : 8}rem;
               border-style: ${this.props.border ? "solid" : ""};
               border-width: ${this.props.border ? 1 : 0}px;

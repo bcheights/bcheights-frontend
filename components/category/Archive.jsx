@@ -18,6 +18,7 @@ class CategoryArchive extends React.Component {
             withSummary={true}
             border={true}
             isHeadline={true}
+            isCategory={true}
           />
         ))}
         <style jsx>

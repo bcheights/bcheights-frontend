@@ -63,7 +63,7 @@ class Category extends Component {
         <Header />
         <div id="content">
           <div className="row" id="outer">
-            <div className="col-12 col-md-8 offset-md-1 border-right" id="main">
+            <div className="col-12 col-md-6 offset-md-2 border-right" id="main">
               <h1>{category}</h1>
               <div className="row border-bottom">
                 <MainView />
