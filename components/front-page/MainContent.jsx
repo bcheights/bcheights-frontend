@@ -86,21 +86,18 @@ class MainContent extends React.Component {
               align-item: center;
               width: 100%;
               max-width: 100%;
-              height: 8em;
-              margin: 1em;
-              padding: 0;
+              height: 8rem;
             }
             #top-stories-large {
-              margin: 2em auto;
-              padding: 0.4em;
+              margin: 1rem auto;
             }
             #no-sum-large {
               padding: 0;
               margin: 0;
             }
             #side-image-stories {
-              margin: 1em auto;
-              padding: 0.4em;
+              margin: 1rem auto;
+              padding: 0.4rem;
             }
           `}
         </style>

@@ -42,6 +42,7 @@ class LeftSideBar extends React.Component {
           {`
             #container {
               margin-right: 10px;
+              padding: 0;
             }
             ul {
               list-style-type: none;
@@ -49,8 +50,12 @@ class LeftSideBar extends React.Component {
               margin: 0;
             }
             #top-story {
+              padding: 0;
               padding-bottom: 5px;
               margin-bottom: 10px;
+            }
+            #no-sum-large {
+              padding: 0;
             }
           `}
         </style>

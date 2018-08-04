@@ -28,11 +28,6 @@ class NoImage extends React.Component {
         </p>
         <style jsx>
           {`
-            div {
-              padding: 0;
-              margin: 0;
-            }
-
             img {
               margin: auto;
               display: flex;

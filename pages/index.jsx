@@ -85,7 +85,7 @@ class Page extends React.Component {
               padding: 0;
             }
             #right {
-              padding: 0.15em;
+              padding: 0;
             }
             #footer {
               padding-top: 10px;

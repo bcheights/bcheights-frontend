@@ -17,7 +17,7 @@ class LeftSideImage extends React.Component {
     return (
       <div className="container" id="content">
         <div className="row justify-content-center">
-          <div className="col-3" id="side-image">
+          <div className="col-5" id="side-image">
             <Link
               as={`/post/${d.getFullYear()}/${d.getMonth() +
                 1}/${d.getDate()}/${slug}`}
@@ -26,7 +26,7 @@ class LeftSideImage extends React.Component {
               <img className="" src={featured} />
             </Link>
           </div>
-          <div className="col-8" id="other">
+          <div className="col-7" id="other">
             <div id="title">
               <Link
                 as={`/post/${d.getFullYear()}/${d.getMonth() +
@@ -44,14 +44,12 @@ class LeftSideImage extends React.Component {
         </div>
         <style jsx>
           {`
-            #content {
-              padding: 0;
-              margin: 1em auto;
-              width: 100%;
-            }
             #side-image {
-              margin: 0;
               padding: 0;
+              margin: 0;
+            }
+            #other {
+              padding-right: 0;
             }
             img {
               max-width: 99%;
@@ -78,8 +76,8 @@ class LeftSideImage extends React.Component {
         <style jsx>
           {`
             img {
-              width: ${this.props.isHeadline ? 240 : 100}px;
-              height: ${this.props.isHeadline ? 160 : 80}px;
+              width: ${this.props.isHeadline ? 240 : 13}rem;
+              height: ${this.props.isHeadline ? 160 : 6}rem;
               border-style: ${this.props.border ? "solid" : ""};
               border-width: ${this.props.border ? 1 : 0}px;
             }
