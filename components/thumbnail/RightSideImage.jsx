@@ -44,21 +44,14 @@ class RightSideImage extends React.Component {
         </p>
         <style jsx>
           {`
-            #content {
-              padding: 0;
-              margin: 1em auto;
-            }
             #side-image {
               margin: 0;
               padding: 0;
             }
             #title {
-              margin-right: 7px;
               font-family: "Lato";
             }
             img {
-              width: 200px;
-              height: 120px;
               max-width: 99%;
             }
 
@@ -78,6 +71,15 @@ class RightSideImage extends React.Component {
               font-size: 0.85rem;
             }
           `}
+        </style>
+        <style jsx>{`
+          img {
+            width: ${this.props.isHeadline ? 17.875 : 13}rem;
+            height: ${this.props.isHeadline ? 11 : 8}rem;
+            border-style: ${this.props.border ? "solid" : ""};
+            border-width: ${this.props.border ? 1 : 0}px;
+          }
+        `}
         </style>
       </div>
     );

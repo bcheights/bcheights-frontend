@@ -56,7 +56,7 @@ class Article extends React.Component {
 
             #details p {
               font-family: Roboto, sans-serif;
-              font-size: 12px;
+              font-size: 0.8rem;
               padding: 0;
               margin: 0 5px 0 0;
             }

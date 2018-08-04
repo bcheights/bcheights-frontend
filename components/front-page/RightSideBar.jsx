@@ -49,16 +49,16 @@ class RightSideBar extends React.Component {
               margin: 0;
             }
             #top-story {
+              padding-left: 12px;
               padding-bottom: 5px;
               margin-bottom: 10px;
+            }
+            #no-image {
+              margin-left: 0;
             }
             #no-sum-large {
               padding: 0;
               margin: 0;
-            }
-
-            #no-sum-large.ul {
-              margin: 10px;
             }
           `}
         </style>

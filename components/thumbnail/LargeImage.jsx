@@ -35,10 +35,6 @@ class LargeImage extends React.Component {
         </p>
         <style jsx>
           {`
-            div {
-              padding: 0;
-              margin: 0;
-            }
             img {
               margin: auto;
               display: flex;
@@ -51,7 +47,6 @@ class LargeImage extends React.Component {
             a {
               text-decoration: none;
               color: black;
-              font-size: 1.15rem;
               font-weight: bold;
             }
             #text {
@@ -66,9 +61,12 @@ class LargeImage extends React.Component {
         </style>
         <style jsx>
           {`
+            a {
+              font-size: ${this.props.isHeadline ? 1.15 : 0.85}rem;
+            }
             img {
-              width: ${this.props.isHeadline ? 600 : 300}px;
-              height: ${this.props.isHeadline ? 300 : 150}px;
+              width: ${this.props.isHeadline ? 45 : 22}rem;
+              height: ${this.props.isHeadline ? 18 : 8}rem;
               border-style: ${this.props.border ? "solid" : ""};
               border-width: ${this.props.border ? 1 : 0}px;
             }
