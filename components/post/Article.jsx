@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { utils } from "../../services";
+import FacebookProvider, { Comments } from "react-facebook";
 
 @connect(store => {
   return {
@@ -18,20 +19,26 @@ class Article extends React.Component {
     }
 
     return (
-      <div id="article">
-        <div id="headline">
-          <h2>{title}</h2>
-          <div id="details">
-            <p>{author}</p>
-            <p>{utils.getDate(date)}</p>
+      <div className="container">
+        <div className="article">
+          <div id="headline">
+            <h2>{title}</h2>
+            <div id="details">
+              <p>{author}</p>
+              <p>{utils.getDate(date)}</p>
+            </div>
+            <img src={featured} className="img-responsive" />
           </div>
-          <img src={featured} className="img-responsive" />
+          <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
         </div>
-        <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
-
+        <div id="comments">
+          <FacebookProvider appId="552236551859735">
+            <Comments href={document.URL} />
+          </FacebookProvider>
+        </div>
         <style jsx>
           {`
-            #article {
+            .article {
               display: flex;
               flex-flow: column nowrap;
               justify-content: center;
@@ -63,6 +70,11 @@ class Article extends React.Component {
 
             img {
               max-width: 100%;
+            }
+
+            #comments {
+              display: flex;
+              justify-content: center;
             }
           `}
         </style>
