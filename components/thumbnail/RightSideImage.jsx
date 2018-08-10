@@ -2,13 +2,6 @@ import Link from "next/link";
 import React from "react";
 import { utils } from "../../services";
 
-function getDate(dateString) {
-  var d = new Date(dateString);
-  return `${d.toLocaleDateString("en-us", {
-    month: "long"
-  })} ${d.getDate()}, ${d.getFullYear()}`;
-}
-
 class RightSideImage extends React.Component {
   render() {
     const { title, category, date, featured, slug } = this.props.article;
@@ -40,7 +33,7 @@ class RightSideImage extends React.Component {
         </Link>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} id="text" />
         <p id="date">
-          {category} | {getDate(date)}
+          {category} | {utils.getDate(date)}
         </p>
         <style jsx>
           {`
@@ -72,14 +65,15 @@ class RightSideImage extends React.Component {
             }
           `}
         </style>
-        <style jsx>{`
-          img {
-            width: ${this.props.isHeadline ? 17.875 : 13}rem;
-            height: ${this.props.isHeadline ? 11 : 8}rem;
-            border-style: ${this.props.border ? "solid" : ""};
-            border-width: ${this.props.border ? 1 : 0}px;
-          }
-        `}
+        <style jsx>
+          {`
+            img {
+              width: ${this.props.isHeadline ? 17.875 : 13}rem;
+              height: ${this.props.isHeadline ? 11 : 8}rem;
+              border-style: ${this.props.border ? "solid" : ""};
+              border-width: ${this.props.border ? 1 : 0}px;
+            }
+          `}
         </style>
       </div>
     );

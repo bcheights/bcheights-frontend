@@ -24,8 +24,7 @@ class Article extends React.Component {
           <div id="headline">
             <h2>{title}</h2>
             <div id="details">
-              <p>{author}</p>
-              <p>{utils.getDate(date)}</p>
+              <p>{author} | {utils.getDate(date)}</p>
             </div>
             <img src={featured} className="img-responsive" />
           </div>

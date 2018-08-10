@@ -43,8 +43,6 @@ class LargeImage extends React.Component {
             }
             #title {
               font-family: "Lato";
-              display: flex;
-              justify-content: center;
             }
             a {
               text-decoration: none;
