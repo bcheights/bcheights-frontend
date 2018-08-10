@@ -21,8 +21,8 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchCollection(5);
     this.props.fetchCollection(3);
-    this.props.fetchCollection(6);
   }
 
   render() {

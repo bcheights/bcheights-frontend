@@ -30,7 +30,7 @@ class Post extends React.Component {
 
   componentDidMount() {
     this.props.fetchPost(this.props.slug);
-    this.props.fetchCollection(6);
+    this.props.fetchCollection(5);
   }
 
   componentDidUpdate(prevProps) {
