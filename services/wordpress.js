@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_ROOT = "http://18.219.114.43/wp-json/wp/v2";
+const API_ROOT = "http://18.222.240.21/wp-json/wp/v2";
 
 async function callApi(endpoint) {
   const fullUrl =
@@ -15,12 +15,12 @@ async function callApi(endpoint) {
 }
 
 // Main api services
-export const fetchPost = slug => callApi(`/posts?slug=${slug}`);
+export const fetchPost = slug => callApi(`/posts?slug=${slug}&_embed`);
 export const fetchAuthor = id => callApi(`/users/${id}`);
 export const fetchFeaturedImage = id => callApi(`/media/${id}`);
-export const fetchCollection = id => callApi(`/posts?tags=${id}`);
-export const fetchCategory = id => callApi(`/posts?categories=${id}`);
-export const fetchSearch = search => callApi(`/posts?search=${search}`);
+export const fetchCollection = id => callApi(`/posts?tags=${id}&_embed`);
+export const fetchCategory = id => callApi(`/posts?categories=${id}&_embed`);
+export const fetchSearch = search => callApi(`/posts?search=${search}&_embed`);
 
 // Returns post info from slug id
 export const fetchPostData = async slug => {
@@ -31,15 +31,11 @@ export const fetchPostData = async slug => {
 
 // Extract the information from WP GET Request for single post
 export const parsePostData = async post => {
-  // GET Article Data & Featured Image & Author
-  const mediaData = await fetchFeaturedImage(post.featured_media);
-  const authorData = await fetchAuthor(post.author);
-
   // Set data to be dispatched
   return {
     title: post.title.rendered,
-    featured: mediaData.guid.rendered,
-    author: authorData.name,
+    featured: post['_embedded']['wp:featuredmedia'][0]['source_url'],
+    author: post['_embedded']['author'][0]['name'],
     date: post.modified,
     content: changeRoute(post.content.rendered),
     excerpt: changeRoute(post.excerpt.rendered),
@@ -68,7 +64,7 @@ export const parseEmbedForArray = async (post, section) => {
 
 // Replace WP Instance endpoint with Front-End Route
 export const changeRoute = string => {
-  const endpoint = "http://18.219.114.43";
+  const endpoint = "http://18.222.240.21";
   if (process.env.NODE_ENV === "production") {
     return string.replace(
       endpoint,
@@ -82,34 +78,45 @@ export const changeRoute = string => {
 export const getCategory = category => {
   switch (category) {
     case "Sports": {
-      return 8;
+      return 4;
     }
-    case 8: {
+    case 4: {
       return "Sports";
     }
     case "Opinions": {
-      return 9;
+      return 8;
     }
-    case 9: {
+    case 8: {
       return "Opinions";
     }
     case "News": {
-      return 7;
+      return 2;
     }
-    case 7: {
+    case 2: {
       return "News";
     }
     case "Arts": {
-      return 11;
+      return 6;
     }
-    case 11: {
+    case 6: {
       return "Arts";
     }
     case "Metro": {
-      return 10;
+      return 7;
     }
-    case 10: {
+    case 7: {
       return "Metro";
+    }
+  }
+};
+
+export const getCollectionType = (tagID, forSection = false) => {
+  switch (tagID) {
+    case 5: {
+      return forSection ? "Featured" : "FEATURED";
+    }
+    case 3: {
+      return forSection ? "Top Story" : "TOP_STORY";
     }
   }
 };

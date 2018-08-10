@@ -1,10 +1,10 @@
 import { takeEvery, put, call, fork, select, all } from "redux-saga/effects";
-import { api } from "../services";
+import { wp } from "../services";
 
 function* loadPost({ slug }) {
   try {
     // GET post data by matching the slug
-    const postData = yield api.fetchPostData(slug);
+    const postData = yield call(wp.fetchPostData, slug);
 
     yield put({
       type: "FETCH_POST_SUCCESS",
@@ -25,8 +25,8 @@ function* loadCollection({ tagID }) {
     yield put({
       type: `FETCH_${actionType}_REQUEST`
     });
-    const data = yield api.fetchCollection(tagID);
-    const collection = yield parsePostsToArray(data);
+    const data = yield call(wp.fetchCollection, tagID);
+    const collection = yield call(parsePostsToArray, data);
     // const collection = yield parsePostsToArray(data, 'collection', tagID)
     // Once finished --> Send success message
     yield put({
@@ -43,10 +43,10 @@ function* loadCollection({ tagID }) {
 
 function getCollectionType(tagID, forSection = false) {
   switch (tagID) {
-    case 3: {
+    case 5: {
       return forSection ? "Featured" : "FEATURED";
     }
-    case 6: {
+    case 3: {
       return forSection ? "Top Story" : "TOP_STORY";
     }
   }
@@ -54,8 +54,8 @@ function getCollectionType(tagID, forSection = false) {
 
 function* loadCategory({ categoryId }) {
   try {
-    const data = yield api.fetchCategory(categoryId);
-    const collection = yield parsePostsToArray(data);
+    const data = yield call(wp.fetchCategory, categoryId);
+    const collection = yield call(parsePostsToArray, data);
     // const collection = yield parsePostsToArray(data, 'category', categoryId)
 
     yield put({
@@ -72,8 +72,8 @@ function* loadCategory({ categoryId }) {
 
 function* loadSearch({ searchString }) {
   try {
-    const data = yield api.fetchSearch(searchString);
-    const searchResults = yield parsePostsToArray(data);
+    const data = yield call(wp.fetchSearch, searchString);
+    const searchResults = yield call(parsePostsToArray, data);
     yield put({
       type: "FETCH_SEARCH_SUCCESS",
       payload: searchResults
@@ -94,12 +94,12 @@ function* parsePostsToArray(posts, type = "", id = 0) {
   // if (type === 'collection') {
   //   section = getCollectionType(id, true)
   // } else if (type === 'category') {
-  //   section = api.getCategory(id)
+  //   section = wp.getCategory(id)
   // }
 
   for (let i = 0; i < posts.length; i++) {
-    // parsedData = yield api.parseEmbedForArray(posts[i], section)
-    parsedData = yield api.parsePostData(posts[i]);
+    // parsedData = yield wp.parseEmbedForArray(posts[i], section)
+    parsedData = yield call(wp.parsePostData, posts[i]);
     collection.push(parsedData);
   }
   return collection;

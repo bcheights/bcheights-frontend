@@ -4,7 +4,7 @@ import CategoryArchive from "../components/category/Archive";
 import Footer from "../components/footer";
 
 import { fetchCategory } from "../actions";
-import { api } from "../services";
+import { wp } from "../services";
 
 import Head from "next/head";
 import { Component } from "react";
@@ -23,13 +23,13 @@ class Category extends Component {
   }
 
   componentDidMount() {
-    const id = api.getCategory(this.props.category);
+    const id = wp.getCategory(this.props.category);
     this.props.fetchCategory(id);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.category !== this.props.category) {
-      const id = api.getCategory(this.props.category);
+      const id = wp.getCategory(this.props.category);
       this.props.fetchCategory(id);
     }
   }
