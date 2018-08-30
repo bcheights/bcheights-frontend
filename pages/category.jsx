@@ -4,7 +4,7 @@ import CategoryArchive from "../components/category/Archive";
 import Footer from "../components/footer";
 
 import { fetchCategory } from "../actions";
-import { wp } from "../services";
+import { wp, utils } from "../services";
 
 import Head from "next/head";
 import { Component } from "react";
@@ -18,7 +18,7 @@ class Category extends Component {
   static getInitialProps({ store, isServer, req, query }) {
     const id = req ? req.params.id : query.id;
     // Capitalize the first letter of id
-    const category = id.charAt(0).toUpperCase() + id.slice(1);
+    const category = utils.capitalizeWord(id);
     return { category };
   }
 
