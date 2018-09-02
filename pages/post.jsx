@@ -36,6 +36,7 @@ class Post extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.slug !== this.props.slug) {
       this.props.fetchPost(this.props.slug);
+      this.props.fetchCollection(5);
     }
   }
 

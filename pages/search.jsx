@@ -5,7 +5,6 @@ import LargeImage from "../components/thumbnail/LargeImage";
 import RightSideImage from "../components/thumbnail/RightSideImage";
 
 // import services/store
-import makeStore from "../store";
 import { fetchSearch } from "../actions";
 
 // import 3rd party libraries
@@ -42,9 +41,18 @@ class Page extends React.Component {
     const title = this.props.searchString
       ? `Search: ${this.props.searchString}`
       : "The Heights";
-    const searchResults = this.props.searchResults
-      ? this.props.searchResults
+    const r1 = this.props.searchResults
+      ? this.props.searchResults.slice(
+          0,
+          Math.floor(this.props.searchResults.length / 2)
+        )
       : [];
+    const r2 = this.props.searchResults
+      ? this.props.searchResults.slice(
+          Math.floor(this.props.searchResults.length / 2) + 1
+        )
+      : [];
+
     return (
       <div>
         <Head>
@@ -73,12 +81,23 @@ class Page extends React.Component {
         <h3 className="offset-md-2">
           Search results for: {this.props.searchString}
         </h3>
-        <div className="container" id="content">
-          {searchResults.map(article => (
-            <div className="col-6 offset-md-2">
-              <RightSideImage article={article} withSummary={true} />
+        <div className="container offset-md-2" id="content">
+          <div className="row" id="equal-height">
+            <div className="col-5">
+              {r1.map(article => (
+                <div id="equal-height-child">
+                  <RightSideImage article={article} withSummary={true} />
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="col-5">
+              {r2.map(article => (
+                <div id="equal-height-child">
+                  <RightSideImage article={article} withSummary={true} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div id="footer">
           <Footer />
@@ -88,7 +107,12 @@ class Page extends React.Component {
             #content {
               padding: 0;
             }
-
+            #equal-height {
+              display: flex;
+            }
+            #equal-height-child {
+              flex: 1;
+            }
             #footer {
               padding-top: 10px;
             }

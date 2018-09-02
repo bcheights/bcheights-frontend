@@ -45,6 +45,7 @@ class RightSideImage extends React.Component {
               font-family: "Lato";
             }
             img {
+              margin-left: 0.5rem;
               max-width: 99%;
             }
 
