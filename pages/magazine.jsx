@@ -117,4 +117,4 @@ class Magazine extends React.Component {
   }
 }
 
-export default connect()(Magazine);
+export default Magazine;

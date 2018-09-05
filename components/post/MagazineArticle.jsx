@@ -22,4 +22,4 @@ class MagazineArticle extends React.Component {
   }
 }
 
-export default connect()(MagazineArticle);
+export default MagazineArticle;

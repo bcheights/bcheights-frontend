@@ -120,4 +120,4 @@ class Post extends React.Component {
   }
 }
 
-export default connect()(Post);
+export default Post;

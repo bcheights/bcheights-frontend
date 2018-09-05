@@ -113,4 +113,4 @@ class Category extends Component {
   }
 }
 
-export default connect()(Category);
+export default Category;

@@ -42,4 +42,4 @@ class Centennial extends React.Component {
   }
 }
 
-export default connect()(Centennial);
+export default Centennial;
