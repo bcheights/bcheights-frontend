@@ -107,6 +107,12 @@ export const getCategory = category => {
     case 7: {
       return "Metro";
     }
+    case "Magazine": {
+      return 9;
+    }
+    case 9: {
+      return "Magazine";
+    }
   }
 };
 
