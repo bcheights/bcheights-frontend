@@ -11,21 +11,26 @@ app
   .then(() => {
     const server = express();
 
+    server.get("/author/:id", (req, res) => {
+      const actualPage = "/author";
+      const queryParams = { id: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    });
+
     server.get("/category/:id", (req, res) => {
       const actualPage = "/category";
       const queryParams = { id: req.params.id };
       app.render(req, res, actualPage, queryParams);
     });
 
-    server.get("/post/:id", (req, res) => {
-      const actualPage = "/post";
-      const queryParams = { id: req.params.id };
-      app.render(req, res, actualPage, queryParams);
-    });
-
-    server.get("/magazine/:slug", (req, res) => {
+    server.get("/magazine/:year/:month/:day/:slug", (req, res) => {
       const actualPage = "/magazine";
-      const queryParams = { slug: req.params.slug };
+      const queryParams = {
+        year: req.params.year,
+        month: req.params.month,
+        day: req.params.day,
+        slug: req.params.slug
+      };
       app.render(req, res, actualPage, queryParams);
     });
 
