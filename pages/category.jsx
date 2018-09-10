@@ -66,7 +66,7 @@ class Category extends Component {
             <div className="col-12 col-md-6 offset-md-2 border-right" id="main">
               <h1>{category}</h1>
               <div className="row border-bottom">
-                <MainView />
+                <MainView category={category} />
               </div>
               <h2>Paginated Archive</h2>
               <CategoryArchive />

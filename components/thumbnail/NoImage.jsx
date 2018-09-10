@@ -13,13 +13,17 @@ class NoImage extends React.Component {
         )
       : null;
 
+    const asLink = this.props.magazine
+      ? `/magazine/${d.getFullYear()}/${d.getMonth() +
+          1}/${d.getDate()}/${slug}`
+      : `/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`;
+    const hrefLink = this.props.magazine
+      ? `/magazine?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`
+      : `/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`;
+
     return (
       <div className="container">
-        <Link
-          as={`/post/${d.getFullYear()}/${d.getMonth() +
-            1}/${d.getDate()}/${slug}`}
-          href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}
-        >
+        <Link as={asLink} href={hrefLink}>
           <a id="title">{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} id="text" />

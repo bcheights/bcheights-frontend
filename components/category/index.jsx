@@ -3,12 +3,13 @@ import LargeImage from "../thumbnail/LargeImage";
 import { connect } from "react-redux";
 
 @connect(store => {
-  return { category: store.collections.category };
+  return { categoryList: store.collections.category };
 })
 export default class extends React.Component {
   render() {
-    const headline = this.props.category ? this.props.category.slice(0, 1) : [];
-    const category = this.props.category ? this.props.category.slice(1) : [];
+    const headline = this.props.categoryList ? this.props.categoryList.slice(0, 1) : [];
+    const categoryList = this.props.categoryList ? this.props.categoryList.slice(1) : [];
+    const magazine = this.props.category === 'Magazine' ? true : false;
     return (
       <div>
         <div id="content">
@@ -20,11 +21,12 @@ export default class extends React.Component {
                 withSummary={true}
                 isHeadline={true}
                 border={true}
+                magazine={magazine}
               />
             ))}
           </ul>
           <div className="row" id="mid-content">
-            {category.map(article => (
+            {categoryList.map(article => (
               <div
                 className="col-12 col-md-4"
                 id="no-sum-large"
@@ -35,11 +37,12 @@ export default class extends React.Component {
                     article={article}
                     withSummary={true}
                     border={true}
+                    magazine={magazine}
                   />
                 </ul>
               </div>
             ))}
-            {category.map(article => (
+            {categoryList.map(article => (
               <div
                 className="col-12 col-md-4"
                 id="no-sum-large"

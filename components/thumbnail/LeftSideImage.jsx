@@ -13,26 +13,25 @@ class LeftSideImage extends React.Component {
         )
       : null;
 
-    //const excerpt = this.props.withSummary ? this.props.article.excerpt : null;
+    const asLink = this.props.magazine
+      ? `/magazine/${d.getFullYear()}/${d.getMonth() +
+          1}/${d.getDate()}/${slug}`
+      : `/post/${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}/${slug}`;
+    const hrefLink = this.props.magazine
+      ? `/magazine?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`
+      : `/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`;
+
     return (
       <div className="container" id="content">
         <div className="row justify-content-center">
           <div className="col-5" id="side-image">
-            <Link
-              as={`/post/${d.getFullYear()}/${d.getMonth() +
-                1}/${d.getDate()}/${slug}`}
-              href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}
-            >
+            <Link as={asLink} href={hrefLink}>
               <img className="" src={featured} />
             </Link>
           </div>
           <div className="col-7" id="other">
             <div id="title">
-              <Link
-                as={`/post/${d.getFullYear()}/${d.getMonth() +
-                  1}/${d.getDate()}/${slug}`}
-                href={`/post?year=${d.getFullYear()}&month=${d.getMonth()}&day=${d.getDate()}&slug=${slug}`}
-              >
+              <Link as={asLink} href={hrefLink}>
                 <a id="title">{title}</a>
               </Link>
             </div>
