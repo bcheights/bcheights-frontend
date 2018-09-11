@@ -1,5 +1,5 @@
 // import components
-import Header from "../components/header/Header";
+import MagazineHeader from "../components/header/MagazineHeader";
 import MagazineArticle from "../components/post/MagazineArticle";
 import LargeImage from "../components/thumbnail/LargeImage";
 import RelatedArticles from "../components/post/RelatedArticles";
@@ -70,22 +70,8 @@ class Magazine extends React.Component {
           />
         </Head>
         <div>
-          <Header />
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-8 offset-md-1">
-                <MagazineArticle />
-              </div>
-            </div>
-            <h2>Related Articles</h2>
-            <div className="row">
-              {relatedArticles.map(article => (
-                <div className="col-3" id="no-sum-large" key={article.slug}>
-                  <LargeImage article={article} withSummary={false} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <MagazineHeader />
+          <MagazineArticle />
           <Footer />
         </div>
         <style jsx>
