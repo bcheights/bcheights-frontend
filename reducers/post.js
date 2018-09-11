@@ -5,6 +5,7 @@ export default function reducer(
     author: "",
     date: "",
     content: "",
+    excerpt: "",
     category: "",
     error: null,
     fetching: false,
@@ -21,6 +22,7 @@ export default function reducer(
         author: "",
         date: "",
         content: "",
+        excerpt: "",
         category: "",
         related: [],
         fetching: true,
@@ -35,6 +37,7 @@ export default function reducer(
         author: action.payload.author,
         date: action.payload.date,
         content: action.payload.content,
+        excerpt: action.payload.excerpt,
         category: action.payload.category,
         fetching: false,
         fetched: true
