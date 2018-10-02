@@ -44,7 +44,7 @@ class Article extends React.Component {
               align-items: center;
               max-width: 600px;
               margin: 0 auto;
-              font-family: "Times New Roman";
+              font-family: "Lato";
             }
 
             #headline {

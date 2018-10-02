@@ -30,7 +30,6 @@ class Magazine extends React.Component {
 
   componentDidMount() {
     this.props.fetchPost(this.props.slug);
-    this.props.fetchCollection(6);
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +41,7 @@ class Magazine extends React.Component {
   render() {
     const title = this.props.title ? this.props.title : "The Heights";
     const relatedArticles = this.props.topStories ? this.props.topStories : [];
-
+    console.log(title);
     return (
       <div>
         <Head>

@@ -2,7 +2,6 @@ import MastHeadCap from "./MastHeadCap";
 import NavBar from "./NavBar";
 
 import Link from "next/link";
-import Head from "next/head";
 
 const Header = () => (
   <div className="header">

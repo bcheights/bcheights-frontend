@@ -4,6 +4,7 @@ import Router from "next/router";
 
 function getCategories() {
   return [
+    { id: "home", title: "Home" },
     { id: "news", title: "News" },
     { id: "sports", title: "Sports" },
     { id: "arts", title: "Arts" },
@@ -13,16 +14,23 @@ function getCategories() {
   ];
 }
 
-const CategoryLink = ({ category }) => (
-  <li className="nav-item">
-    <Link
-      as={`/category/${category.id}`}
-      href={`/category?title=${category.title}`}
-    >
-      <a className="nav-link">{category.title}</a>
-    </Link>
-  </li>
-);
+const CategoryLink = ({ category }) =>
+  category.id === "home" ? (
+    <li className="nav-item">
+      <Link as={`/`} href={`/`}>
+        <a className="nav-link">{category.title}</a>
+      </Link>
+    </li>
+  ) : (
+    <li className="nav-item">
+      <Link
+        as={`/category/${category.id}`}
+        href={`/category?title=${category.title}`}
+      >
+        <a className="nav-link">{category.title}</a>
+      </Link>
+    </li>
+  );
 
 class MastHeadCap extends React.Component {
   handleSearch = e => {
@@ -36,6 +44,7 @@ class MastHeadCap extends React.Component {
   };
 
   render() {
+    const isMagazine = this.props.isMagazine ? true : false;
     return (
       <div>
         <nav className="navbar navbar-dark fixed-top">
@@ -49,24 +58,26 @@ class MastHeadCap extends React.Component {
             aria-label="Toggle navigation"
           >
             <img src="/static/menu.svg" />
+            Menu
           </button>
-
-          <form
-            className="form-inline d-lg-inline-block d-none"
-            id="searchBar"
-            onSubmit={this.handleSearch}
-          >
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              ref={node => (this.searchInput = node)}
-            />
-            <button id="searchButton">
-              <img src="/static/search.svg" />
-            </button>
-          </form>
+          {isMagazine ? null : (
+            <form
+              className="form-inline d-lg-inline-block d-none"
+              id="searchBar"
+              onSubmit={this.handleSearch}
+            >
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                ref={node => (this.searchInput = node)}
+              />
+              <button id="searchButton">
+                <img src="/static/search.svg" />
+              </button>
+            </form>
+          )}
 
           {/* Below div will never show --> Used for Navbar toggle */}
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -91,7 +102,7 @@ class MastHeadCap extends React.Component {
         <style jsx>
           {`
             .navbar {
-              background-color: #8d0821;
+              background-color: ${isMagazine ? "transparent" : "#8d0821"};
             }
 
             button {

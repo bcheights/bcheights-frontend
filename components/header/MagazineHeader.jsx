@@ -1,7 +1,4 @@
 import MastHeadCap from "./MastHeadCap";
-import NavBar from "./NavBar";
-
-import Link from "next/link";
 
 const MagazineHeader = () => (
   <div className="header">
